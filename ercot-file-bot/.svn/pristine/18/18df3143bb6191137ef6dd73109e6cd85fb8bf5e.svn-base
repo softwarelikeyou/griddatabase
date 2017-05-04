@@ -1,0 +1,14 @@
+log4j.appender.LOGFILE=org.apache.log4j.RollingFileAppender
+log4j.appender.LOGFILE.File=/home/ercot/bot/log/bot.log
+log4j.appender.LOGFILE.Append=true
+log4j.appender.LOGFILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.LOGFILE.layout.ConversionPattern=%d{dd MMM yyyy HH:mm:ss} [%t] %-5p %c %x - %m%n
+log4j.appender.LOGFILE.MaxFileSize=1000KB
+log4j.appender.LOGFILE.MaxBackupIndex=10
+
+log4j.rootLogger = INFO, LOGFILE
+
+log4j.logger.com.griddatabase=INFO
+log4j.logger.com.griddatabase.additivity=false
+
+

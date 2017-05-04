@@ -1,0 +1,15 @@
+50 23 * * * /home/backup.bash &> /dev/null
+
+20 23 * * * /home/sqlbackup.bash &> /dev/null
+
+0 */1 * * * /home/collect.bash ascpc &> /dev/null
+
+0 15 * * * /home/collect.bash h48damhp &> /dev/null
+
+30 15 * * * /home/collect.bash h48damas &> /dev/null
+
+*/5 * * * * /home/collect.bash rtlmp &> /dev/null
+
+30 14 * * * /home/collect.bash rtdam &> /dev/null
+
+01,16,31,46 * * * * /home/collect.bash rtspp &> /dev/null

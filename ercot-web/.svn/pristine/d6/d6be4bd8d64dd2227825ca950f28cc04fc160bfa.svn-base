@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="ercot-web" default="build" basedir="../">
+	
+ <property name="project.dir" value="${basedir}/${ant.project.name}"></property>
+ <property name="build.dir" value="${project.dir}/war/WEB-INF/classes"></property>
+ <property name="lib.dir" value="${project.dir}/war/WEB-INF/lib"></property>
+ <property name="src.dir"   value="${project.dir}/src"></property>
+ <property name="war.file" value="${basedir}/${ant.project.name}/${ant.project.name}.war" />
+ <property name="tomcat.lib.dir" value="/Users/steve/Library/Tomcat/7.0/lib/" />
+ <property name="tomcat.server" value="192.168.0.202" />
+ <property name="user" value="root" />
+ <property name="password" value="dinky01" />
+ <property name="tomcat.base" value="/home/apache-tomcat-7.0.30" />
+	
+ <path id="project.classpath">
+  <pathelement location="${build.dir}"/>
+  <fileset dir="${lib.dir}" includes="*.jar"/>
+  <fileset dir="${tomcat.lib.dir}" includes="servlet-api.jar"/>
+ </path>
+ 
+ <taskdef name="i18n"
+		  classpathref="project.classpath"
+		  classname="mazz.i18n.ant.I18NAntTask" />
+	
+ <target name="ercot-om">
+  <available property="file.exists" file="${basedir}/ercot-om.jar"/>
+  <fail unless="file.exists" message="ercot-om doesn't exist!"/>
+ </target>
+	
+ <target name="clean" description="Cleans this project">
+  <delete dir="${build.dir}" failonerror="false" />
+  <delete file="${war.file}" failonerror="false" />
+ </target>
+  
+ <target name="javac" depends="ercot-om,clean" description="Compile java source">
+  <echo message="Using Java version ${ant.java.version}."/>
+  <mkdir dir="${build.dir}"/>
+  <mkdir dir="${lib.dir}"/>
+  <copy todir="${lib.dir}">
+   <fileset dir="${basedir}/ercot-om/lib" includes="*.jar"/>
+   <fileset dir="${basedir}" includes="ercot-om.jar"/>
+  </copy>
+  <javac srcdir="${src.dir}" 
+         includes="**" 
+         encoding="utf-8"
+         destdir="${build.dir}"
+         source="1.7" 
+         target="1.7" 
+         nowarn="true"
+         debug="true" 
+         debuglevel="lines,vars,source"
+         includeantruntime="false">
+  	<exclude name="com/softwarelikeyou/test/*.java" />
+  	<compilerarg value="-Xlint:deprecation"/>
+  	<compilerarg value="-XDignore.symbol.file"/>
+   <classpath refid="project.classpath"/>
+  </javac>
+  <copy todir="${build.dir}">
+   <fileset dir="${src.dir}" excludes="**/*.java"/>
+  </copy>
+  <copy todir="${lib.dir}">
+   <fileset dir="${basedir}" includes="ercot-om.jar"/>
+  </copy>
+ </target>
+
+ <target name="i18nc" description="Produce i18n property files">
+  <i18n outputdir="${build.dir}" 
+	  	defaultlocale="en" 
+	  	verbose="false"
+		verify="true">
+   <classpath>
+    <pathelement path="${build.dir}"/>
+   	<pathelement path="${basedir}/ercot-om.jar"/>  
+   </classpath>
+   <classfileset dir="${build.dir}">
+	<include name="**/*.class"/>
+   </classfileset>
+  </i18n>	
+ </target>
+	
+ <target name="build" depends="javac, i18nc" description="Build this project" />
+
+ <target name="war" depends="build" description="Create a war file">
+  <zip destfile="${war.file}" basedir="${project.dir}/war"/>
+ </target>
+ 
+ <target name="deploy" depends="war" description="Create war file">
+  <scp file="${war.file}" 
+	   remoteTofile="${user}@${tomcat.server}:${tomcat.base}/webapps/ROOT.war" 
+	   password="${password}" 
+	   trust="true" />	
+ </target>
+
+ <target name="undeploy" description="Removes webapp">
+  <sshexec host="${tomcat.server}"
+		   username="${user}"
+		   password="${password}"
+		   trust="true"
+		   command="rm -rf ${tomcat.base}/webapps/ROOT*" />
+ </target>
+			
+ <target name="stop" description="Stop Tomcat">
+  <sshexec host="${tomcat.server}"
+		   trust="true"
+		   username="${user}"
+		   password="${password}"
+		   command="service tomcat stop -force" />
+  <sshexec host="${tomcat.server}"
+		   trust="true"
+		   username="${user}"
+		   password="${password}"
+		   command="rm -rf ${tomcat.base}/logs/*.*" />		   
+ </target>
+			 
+ <target name="start" description="Start Tomcat">
+  <sshexec host="${tomcat.server}"
+		   trust="true"
+		   username="${user}"
+		   password="${password}"
+		   command="service tomcat start" /> 
+ </target>
+	
+ <target name="help">
+  <echo>
+   Usage: 
+    ant build: Build this project 
+    ant war: Create a war file
+    ant clean: Cleans this project
+  </echo>
+ </target>
+
+</project>

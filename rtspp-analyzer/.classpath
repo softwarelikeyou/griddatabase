@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ercot-om"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/activemq-core-5.5.0.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/ascpc-analyzer.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/commons-io.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/ercot-file-bot.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/ercot-om.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/geronimo-j2ee-management_1.1_spec-1.0.1.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/geronimo-jms_1.1_spec-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/i18nlog-1.0.10.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/javassist-3.12.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/jersey-core-1.6.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/jersey-server-1.6.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/mail.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/mysql-connector-java-5.1.13-bin.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/opencsv-2.3.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/quartz-1.8.0.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/rtlmp-analyzer.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/rtspp-analyzer.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/slf4j-log4j12-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/spring-security-core-2.0.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/spring.jar"/>
+	<classpathentry kind="lib" path="/Users/steve/Documents/ercot/lib/xercesImpl.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

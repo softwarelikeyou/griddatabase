@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ercot-file-collector</display-name>
+  <listener>
+    <description>Auto start and configuration of system wide components</description>
+    <display-name>System Component Configuration</display-name>
+    <listener-class>com.softwarelikeyou.Initialization</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>DirectoryListing</servlet-name>
+    <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>0</param-value>
+    </init-param>
+    <init-param>
+      <param-name>listings</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DirectoryListing</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FileServlet</servlet-name>
+    <servlet-class>com.softwarelikeyou.servlet.FileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileServlet</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>FileArchiveServlet</display-name>
+    <servlet-name>FileArchiveServlet</servlet-name>
+    <servlet-class>com.softwarelikeyou.servlet.FileArchiveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileArchiveServlet</servlet-name>
+    <url-pattern>/FileArchiveServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

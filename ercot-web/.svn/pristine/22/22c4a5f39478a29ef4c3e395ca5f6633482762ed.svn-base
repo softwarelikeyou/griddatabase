@@ -1,0 +1,414 @@
+package com.softwarelikeyou.viewcontroller.ercot;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import org.apache.commons.lang.StringUtils;
+
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.ComponentNotFoundException;
+import org.zkoss.zk.ui.Components;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.ext.AfterCompose;
+import org.zkoss.zkmax.zul.Portalchildren;
+import org.zkoss.zul.Center;
+import org.zkoss.zul.Panel;
+import org.zkoss.zul.Vbox;
+import org.zkoss.zkmax.zul.Portallayout;
+
+import com.softwarelikeyou.I18NStrings;
+import com.softwarelikeyou.model.entity.User;
+import com.softwarelikeyou.model.entity.UserData;
+import com.softwarelikeyou.viewcontroller.GenericBorderlayout;
+import com.softwarelikeyou.viewcontroller.SessionUtil;
+import com.softwarelikeyou.viewcontroller.WebUtil;
+
+public class DashboardLayout extends GenericBorderlayout implements AfterCompose {
+
+	static final long serialVersionUID = 1L;
+
+	static final String PORTAL_CHILDREN_STYLE = "padding: 5px; text-align: center; vertical-align: top;";
+	static final String PORTAL_CHILDREN_ID_PREFIX = "portalChildrenColumn-";
+	static final char SAVED_USER_SETTING_LIST_SEPARATOR = ',';
+	static final String PORTAL_CHILDREN_LIST_KEY_PREFIX = "dashboard.portal.column.list-";
+	static final String PORTAL_CHILDREN_COLUMN_COUNT_KEY = "dashboard.portal.column.count";
+	static final int DEFAULT_COLUMN_COUNT = 2;
+	static final int MAX_COLUMNS = 2;
+
+	protected Center dashboardCenter;
+	protected Vbox dashboardVbox;
+	protected Portallayout portalLayout;
+	protected Portallayout invisiblePortalLayout;
+
+	static final String ASCPC_DAILY_PORTLET = "aSCPCDailyPortlet";
+	static final String RTSPP_DAILY_PORTLET = "rTSPPDailyPortlet";
+	static final String RTDAM_DAILY_PORTLET = "rTDAMDailyPortlet";
+	static final String H48DAMHP_DAILY_PORTLET = "h48DAMHPDailyPortlet";
+	
+	static final Map<String, String> COMPONENT_URL_MAP = new HashMap<String, String>();
+	
+	static final List<String> ADMINISTRATOR_ONLY_PANELS = new ArrayList<String>();
+	static final List<String> PREMIUM_OR_ABOVE_PANELS = new ArrayList<String>();
+	
+	static final List<String> ADMINISTRATOR_DEFAULT_CHILDREN_COLUMN_0 = new ArrayList<String>();
+	static final List<String> ADMINISTRATOR_DEFAULT_CHILDREN_COLUMN_1 = new ArrayList<String>();
+	static final List<String> PREMIUM_DEFAULT_CHILDREN_COLUMN_0 = new ArrayList<String>();
+	static final List<String> PREMIUM_DEFAULT_CHILDREN_COLUMN_1 = new ArrayList<String>();
+	static final List<String> FREEMIUM_DEFAULT_CHILDREN_COLUMN_0 = new ArrayList<String>();
+	static final List<String> FREEMIUM_DEFAULT_CHILDREN_COLUMN_1 = new ArrayList<String>();
+
+	protected int columnCount = 2;
+	protected List<List<String>> portalChildrenColumnLayout = new ArrayList<List<String>>();
+	
+	static {
+		COMPONENT_URL_MAP.put(ASCPC_DAILY_PORTLET, "/ERCOT/ascpc-daily-portlet.zul");
+		COMPONENT_URL_MAP.put(RTSPP_DAILY_PORTLET, "/ERCOT/rtspp-daily-portlet.zul");
+		//COMPONENT_URL_MAP.put(RTDAM_DAILY_PORTLET, "/ERCOT/rtdam-daily-portlet.zul");
+		//COMPONENT_URL_MAP.put(H48DAMHP_DAILY_PORTLET, "/DATILY/h48damhp-daily-portlet.zul");
+
+		ADMINISTRATOR_DEFAULT_CHILDREN_COLUMN_0.add(ASCPC_DAILY_PORTLET);
+		PREMIUM_DEFAULT_CHILDREN_COLUMN_0.add(ASCPC_DAILY_PORTLET);
+		FREEMIUM_DEFAULT_CHILDREN_COLUMN_0.add(ASCPC_DAILY_PORTLET);
+
+		ADMINISTRATOR_DEFAULT_CHILDREN_COLUMN_1.add(RTSPP_DAILY_PORTLET);
+		PREMIUM_DEFAULT_CHILDREN_COLUMN_1.add(RTSPP_DAILY_PORTLET);
+		FREEMIUM_DEFAULT_CHILDREN_COLUMN_1.add(RTSPP_DAILY_PORTLET);
+		
+		//ADMINISTRATOR_DEFAULT_CHILDREN_COLUMN_0.add(RTDAM_DAILY_PORTLET);
+		//PREMIUM_DEFAULT_CHILDREN_COLUMN_0.add(RTDAM_DAILY_PORTLET);
+		//FREEMIUM_DEFAULT_CHILDREN_COLUMN_0.add(RTDAM_DAILY_PORTLET);
+		
+		//ADMINISTRATOR_DEFAULT_CHILDREN_COLUMN_1.add(H48DAMHP_DAILY_PORTLET);
+		//PREMIUM_DEFAULT_CHILDREN_COLUMN_1.add(H48DAMHP_DAILY_PORTLET);
+		//FREEMIUM_DEFAULT_CHILDREN_COLUMN_1.add(H48DAMHP_DAILY_PORTLET);
+	}
+	
+	@Override
+	public void afterCompose() {
+		
+		super.afterCompose();
+
+		Components.wireVariables(this, this);
+		Components.addForwards(this, this);
+		
+		invisiblePortalLayout = new Portallayout();
+		invisiblePortalLayout.setVisible(false);
+		
+		loadSavedLayout();
+		createColumns();
+		loadColumns();
+		createPortlets();
+	}
+	
+	public void onClick$layout1Button(Event event) {
+		changeColumnCount(1);
+	}
+
+	public void onClick$layout2Button(Event event) {
+		changeColumnCount(2);
+	}
+
+	public void onClick$layout3Button(Event event) {
+		changeColumnCount(3);
+	}
+	
+	private void changeColumnCount(int newCount) {
+		if( columnCount == newCount ) return;
+
+		int oldColumnCount = columnCount;
+
+		// sane to prevent divide by 0 and madness
+		if( newCount < 1 ) {
+			columnCount = 1;
+		}
+		else if( newCount > MAX_COLUMNS ) {
+			columnCount = MAX_COLUMNS;
+		}
+		else {
+			columnCount = newCount;
+		}
+
+		if( oldColumnCount > columnCount ) {
+			int shiftToColumn = columnCount - 1;
+
+			List<String> shiftToColumnList = portalChildrenColumnLayout.get(shiftToColumn);
+			int shiftToRow = !shiftToColumnList.isEmpty() ? shiftToColumnList.size() : 0;
+
+			for( int column = (portalChildrenColumnLayout.size() - 1); column >= columnCount; column-- ) {
+				for( String panelId : portalChildrenColumnLayout.get(column) ) {
+					try {
+						Panel p = (Panel) portalLayout.getFellow(panelId);
+						portalLayout.setPanel(p, shiftToColumn, shiftToRow);
+						shiftToRow++ ;
+					}
+					catch( ComponentNotFoundException ex ) {
+						// Do nothing
+					}
+				}
+			}
+		}
+
+		loadColumns();
+
+		savePortalLayout();
+
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void savePortalLayout() {
+		portalChildrenColumnLayout = new ArrayList<List<String>>();
+
+		List<Component> portalLayoutChildren = portalLayout.getChildren();
+		for( Component c : portalLayoutChildren ) {
+			if( c != null && c instanceof Portalchildren && !(c.getChildren().get(0) instanceof EmptyPortlet) ) {
+				Portalchildren portalChildren = (Portalchildren) c;
+				portalChildrenColumnLayout.add(getLiveColumnList(portalChildren));
+			}
+		}
+
+		int column = 0;
+		try {
+			for( List<String> columnList : portalChildrenColumnLayout ) {
+				String savedList = StringUtils.join(columnList.toArray(), SAVED_USER_SETTING_LIST_SEPARATOR);
+				StringBuffer sb = new StringBuffer(PORTAL_CHILDREN_COLUMN_COUNT_KEY);
+				sb.append(column);
+				UserData userData = new UserData();
+				userData.setProperty(sb.toString());
+				userData.setUserId(SessionUtil.getCurrentUser().getId());
+				userData.setValue(savedList);
+				SessionUtil.setUserData(userData);
+				column++ ;
+			}
+
+			Integer integerColumnCount = Integer.valueOf(columnCount);
+			String savedColumnCount = integerColumnCount.toString();
+			UserData userData = new UserData();
+			userData.setProperty(PORTAL_CHILDREN_COLUMN_COUNT_KEY);
+			userData.setUserId(SessionUtil.getCurrentUser().getId());
+			userData.setValue(savedColumnCount);
+			SessionUtil.setUserData(userData);
+
+		}
+		catch( Exception ex ) {
+			WebUtil.showErrorBox(false, ex, I18NStrings.COULD_NOT_SAVE_DASHBOARD_LAYOUT_FOR_USER);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<String> getLiveColumnList(Portalchildren column) {
+		List<String> list = new ArrayList<String>();
+		List<Component> portalChildren = column.getChildren();
+		for( Component c : portalChildren ) {
+			if( c instanceof Panel ) list.add(c.getId());
+		}
+		return list;
+	}
+	
+	private void loadSavedLayout() {
+		List<List<String>> loadedColumnLists = new ArrayList<List<String>>();
+		UserData userData = SessionUtil.getUserData(PORTAL_CHILDREN_COLUMN_COUNT_KEY);
+		String savedColumnCount = null;
+		if (userData != null)
+			savedColumnCount = userData.getValue();
+		
+		if( savedColumnCount != null ) {
+			try {
+				columnCount = Integer.parseInt(savedColumnCount);
+			}
+			catch( Exception e ) {
+				columnCount = DEFAULT_COLUMN_COUNT;
+			}
+		}
+		else 
+			columnCount = DEFAULT_COLUMN_COUNT;
+
+		if( columnCount < 1 ) 
+			columnCount = DEFAULT_COLUMN_COUNT;
+		if( columnCount > MAX_COLUMNS ) 
+			columnCount = MAX_COLUMNS;
+
+		for( int column = 0; column < columnCount; column++ ) 
+			loadedColumnLists.add(getSavedColumnLayout(column));
+		
+		sanitizeLists(loadedColumnLists);
+	}
+	
+	private List<String> getSavedColumnLayout(int column) {
+		List<String> columnList = null;
+
+		StringBuffer sb = new StringBuffer(PORTAL_CHILDREN_COLUMN_COUNT_KEY);
+		sb.append(column);
+		UserData userData = SessionUtil.getUserData(sb.toString());
+		String savedColumnList = null;
+		if (userData != null)
+			savedColumnList = userData.getValue();
+		
+		if( savedColumnList != null ) {
+			try {
+				columnList = Arrays.asList(StringUtils.split(savedColumnList, ','));
+				if( columnList == null ) columnList = new ArrayList<String>();
+				return columnList;
+			}
+			catch( Exception e ) {
+				return getDefaultColumnList(column);
+			}
+		}
+		else 
+			return getDefaultColumnList(column);
+	}
+	
+	private List<String> getDefaultColumnList(int column) {
+		User currentUser = SessionUtil.getCurrentUser();
+		
+		if (currentUser == null) {
+			switch( column ) {
+			    case 0:
+				    return FREEMIUM_DEFAULT_CHILDREN_COLUMN_0;
+			    case 1:
+				    return FREEMIUM_DEFAULT_CHILDREN_COLUMN_1;
+			}
+		}
+		
+		switch( currentUser.getType() ) {
+			case ADMINISTRATOR:
+				switch( column ) {
+					case 0:
+						return ADMINISTRATOR_DEFAULT_CHILDREN_COLUMN_0;
+					case 1:
+						return ADMINISTRATOR_DEFAULT_CHILDREN_COLUMN_1;
+				}
+				break;
+			case PREMIUM:
+				switch( column ) {
+					case 0:
+						return PREMIUM_DEFAULT_CHILDREN_COLUMN_0;
+					case 1:
+						return PREMIUM_DEFAULT_CHILDREN_COLUMN_1;
+				}
+				break;
+			case FREEMIUM:
+				switch( column ) {
+					case 0:
+						return FREEMIUM_DEFAULT_CHILDREN_COLUMN_0;
+					case 1:
+						return FREEMIUM_DEFAULT_CHILDREN_COLUMN_1;
+				}
+				break;
+		}
+		return new ArrayList<String>();
+	}
+	
+	private void sanitizeLists(List<List<String>> loadedColumnLists) {
+
+		portalChildrenColumnLayout = new ArrayList<List<String>>();
+		List<String> uniqueList = new ArrayList<String>();
+
+		for( List<String> loadedColumnList : loadedColumnLists ) {
+			portalChildrenColumnLayout.add(sanitizeColumnList(loadedColumnList, uniqueList));
+		}
+
+		for( String panelName : COMPONENT_URL_MAP.keySet() ) {
+			if( !uniqueList.contains(panelName) ) {
+				if( !panelAllowed(panelName) ) continue;
+				portalChildrenColumnLayout.get(0).add(panelName);
+			}
+		}
+	}
+	
+	private List<String> sanitizeColumnList(List<String> listToSanitize, List<String> globalUnique) {
+
+		List<String> sanitizedList = new ArrayList<String>();
+
+		for( String panel : listToSanitize ) {
+			// is the panel name invalid?
+			if( !COMPONENT_URL_MAP.keySet().contains(panel) ) continue;
+
+			if( !panelAllowed(panel) ) continue;
+
+			// is the panel unique for all of the columns?
+			if( !globalUnique.contains(panel) ) {
+				globalUnique.add(panel);
+				sanitizedList.add(panel);
+			}
+
+		}
+
+		return sanitizedList;
+	}
+	
+	private boolean panelAllowed(String panelName) {
+		User currentUser = SessionUtil.getCurrentUser();
+		if( ADMINISTRATOR_ONLY_PANELS.contains(panelName) && !currentUser.isAdministrator() ) return false;
+		if( PREMIUM_OR_ABOVE_PANELS.contains(panelName) && currentUser.isPremium() ) return false;
+
+		return true;
+	}
+	
+	private void createColumns() {
+		for( int i = 0; i < MAX_COLUMNS; i++ ) {
+			final Portalchildren pc = new Portalchildren();
+			StringBuffer pcId = new StringBuffer(PORTAL_CHILDREN_ID_PREFIX);
+			pcId.append(i);
+			pc.setId(pcId.toString());
+			pc.setStyle(PORTAL_CHILDREN_STYLE);
+			portalLayout.appendChild(pc);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void loadColumns() {
+		Integer portalChildrenWidthInt = Integer.valueOf(98 / columnCount);
+		StringBuffer sb = new StringBuffer(portalChildrenWidthInt.toString());
+		sb.append("%");
+		String portalChildrenWidth = sb.toString();
+
+		List<Portalchildren> columns = new ArrayList<Portalchildren>();
+		columns.addAll(portalLayout.getChildren());
+
+		columns.addAll(invisiblePortalLayout.getChildren());
+
+		for( Portalchildren pc : columns )
+			pc.setParent(portalLayout);
+
+		for( int column = columnCount; column < MAX_COLUMNS; column++ )
+			columns.get(column).setParent(invisiblePortalLayout);
+
+		for( Portalchildren pc : (List<Portalchildren>) portalLayout.getChildren() )
+			pc.setWidth(portalChildrenWidth);
+	}
+	
+	public void createPortlets() {
+		int column = 0;
+		for( List<String> list : portalChildrenColumnLayout ) {
+			int row = 0;
+			for( String panelName : list ) {
+
+				Panel panel = new Panel();
+				panel.setId(panelName);
+
+				panel.setTitle("");
+				panel.setBorder("normal");
+				panel.setWidth("100%");
+				panel.setHeight("100%");
+				
+				panel.appendChild(Executions.createComponents(COMPONENT_URL_MAP.get(panelName), panel, null));
+
+				portalLayout.setPanel(panel, column, row);
+				row++ ;
+			}
+			column++ ;
+		}
+	}
+
+	protected void removeEmptyPortlet(List<Component> components) {
+		for( Component component : components ) {
+			if( component instanceof Panel && component.getChildren().get(0) instanceof EmptyPortlet ) {
+				components.remove(component);
+				return;
+			}
+		}
+	}
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?meta name = "viewport" content = "width = device-width, height = device-height" ?>
+<?taglib uri="/WEB-INF/tld/sly.tld" prefix="sly"?>
+<?page title="${sly:productHeaderString()}"?>
+<?component name="sidebar" macroURI="/sidebar.zul" inline="true"?>
+<zk xmlns:xsi="http://www.w3.org/1999/xhtml">
+ <borderlayout id="dashboardLayout"
+		         apply="com.softwarelikeyou.viewcontroller.dashboard.Controller"
+		         use="com.softwarelikeyou.viewcontroller.dashboard.DashboardLayout">
+  <north border="none" 
+         height="28px">
+   <include src="/top-bar.zul" />
+  </north>
+  <west title="${sly:getLabel('Labels.UI.dashboard')}" 
+        size="13%"
+		splittable="true" 
+		collapsible="true"
+		open="false">
+   <borderlayout>
+	 <center> 
+	  <include src="/Dashboard/actions.zul" 
+	           id="actions"/>
+	 </center>
+	 <south>
+	  <sidebar />
+	 </south>
+	</borderlayout>
+  </west>
+  <center id="dashboardCenter" border="none" autoscroll="true"> 
+    <portallayout hflex="true" vflex="true" id="portalLayout"/>
+  </center>
+ </borderlayout>
+</zk>

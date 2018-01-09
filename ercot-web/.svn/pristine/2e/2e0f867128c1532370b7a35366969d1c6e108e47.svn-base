@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./lmpChartWindow"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <window id="lmpChartWindow" 
+         border="none" 
+         width="100%" 
+         height="800px"
+         contentStyle="overflow:auto;"
+	     use="com.softwarelikeyou.viewcontroller.ercot.LMPChartWindow">
+  <image id="image"/>
+ </window>
+</zk>

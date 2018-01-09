@@ -1,0 +1,91 @@
+package com.softwarelikeyou.viewcontroller.ercot;
+
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Components;
+import org.zkoss.zk.ui.event.OpenEvent;
+import org.zkoss.zkplus.databind.AnnotateDataBinder;
+import org.zkoss.zul.Panel;
+
+import com.softwarelikeyou.I18NStrings;
+import com.softwarelikeyou.model.entity.UserData;
+import com.softwarelikeyou.viewcontroller.BasePanelChildren;
+import com.softwarelikeyou.viewcontroller.ELFunctions;
+import com.softwarelikeyou.viewcontroller.SessionUtil;
+import com.softwarelikeyou.viewcontroller.WebUtil;
+
+@SuppressWarnings("serial")
+public abstract class DashboardPortlet extends BasePanelChildren {
+
+	protected static final boolean DEFAULT_COLLAPSED_STATE = true;
+	protected static final String PORTLET_COLLAPSED_KEY_PREFIX = "dashboard.portal.portlet.";
+	protected static final String PORTLET_COLLAPSED_KEY_SUFFIX = ".collapsed";
+
+	protected AnnotateDataBinder binder;
+	
+	protected String getCollapsedKey() {
+		StringBuffer sb = new StringBuffer(PORTLET_COLLAPSED_KEY_PREFIX);
+		sb.append(getParent().getId());
+		sb.append(PORTLET_COLLAPSED_KEY_SUFFIX);
+		return sb.toString();
+	}
+
+	public void onCreate() {
+		Component parent = getParent();
+		if( !(parent instanceof Panel) ) return;
+
+		Panel panel = (Panel) getParent();
+		panel.setStyle(getPanelStyle());
+		panel.setTitle(ELFunctions.getLabelWithParams(getPanelTitleI18NKey()));
+
+		panel.setCollapsible(canPanelBeCollapsed());
+		panel.setOpen(true);
+		panel.setClosable(false);
+		
+		if( panel.isCollapsible() ) panel.setOpen(getSavedCollapsedState());
+
+		if( shouldSetHeight() ) panel.setHeight(getHeightSetting());
+		
+		Components.wireVariables(this, this);
+		Components.addForwards(this, this);
+		binder = new AnnotateDataBinder(this);
+	}
+
+	public void handleOpenCloseEvent(OpenEvent event) {
+		try {
+			Boolean collapsedState = event.isOpen();
+			UserData userData = new UserData();
+			userData.setUserId(SessionUtil.getCurrentUser().getId());
+			userData.setProperty(getCollapsedKey());
+			userData.setValue(collapsedState.toString());
+			SessionUtil.setUserData(userData);
+		}
+		catch( Exception e ) {
+			WebUtil.showErrorBox(false, e, I18NStrings.COULD_NOT_SAVE_DASHBOARD_LAYOUT_FOR_USER);
+		}
+	}
+
+	protected boolean getSavedCollapsedState() {
+		UserData userData = SessionUtil.getUserData(getCollapsedKey());
+		if( userData != null ) return Boolean.parseBoolean(userData.getValue());
+		return DEFAULT_COLLAPSED_STATE;
+	}
+
+	protected String getHeightSetting() {
+		return "";
+	}
+
+	protected String getPanelStyle() {
+		return "margin: 10px auto";
+	}
+
+	protected boolean shouldSetHeight() {
+		return false;
+	}
+
+	protected boolean canPanelBeCollapsed() {
+		return false;
+	}
+
+	abstract protected String getPanelTitleI18NKey();
+
+}

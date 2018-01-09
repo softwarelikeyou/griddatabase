@@ -1,0 +1,84 @@
+package com.softwarelikeyou;
+
+import java.util.Properties;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+import org.apache.log4j.Logger;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
+
+import com.softwarelikeyou.facade.PasswordEncoder;
+import com.softwarelikeyou.facade.UserFacade;
+import com.softwarelikeyou.model.entity.User;
+import com.softwarelikeyou.model.entity.UserData;
+import com.softwarelikeyou.model.entity.ascpc.ASCPCDaily;
+import com.softwarelikeyou.model.entity.rtspp.RTSPPDaily;
+import com.softwarelikeyou.util.ActiveMQUtil;
+import com.softwarelikeyou.util.HibernateUtil;
+import com.softwarelikeyou.util.ResourceUtil;
+
+public class Initialization implements ServletContextListener {
+	private static Logger logger = Logger.getLogger(Initialization.class);
+
+	public void contextDestroyed(ServletContextEvent sce) {
+	    try {	
+	 	    if (ActiveMQUtil.isStarted())
+		        ActiveMQUtil.stop();
+			if (!HibernateUtil.getSessionFactory().isClosed())
+			    HibernateUtil.shutdown();
+		} 
+	    catch (Exception e) {
+			logger.error(e.getCause(), e);
+		}
+	}
+
+	public void contextInitialized(ServletContextEvent sce) {
+		try {   		  
+		    Properties hibernateProperties = new Properties();
+	        hibernateProperties.setProperty(Environment.DRIVER, ResourceUtil.get().getString("hibernate.connection.driver_class"));
+	        hibernateProperties.setProperty(Environment.URL, ResourceUtil.get().getString("hibernate.connection.url"));
+	        hibernateProperties.setProperty(Environment.USER, ResourceUtil.get().getString("hibernate.connection.username"));
+		    hibernateProperties.setProperty(Environment.PASS, ResourceUtil.get().getString("hibernate.connection.password"));
+		    hibernateProperties.setProperty(Environment.DIALECT, ResourceUtil.get().getString("hibernate.dialect"));
+		    hibernateProperties.setProperty(Environment.HBM2DDL_AUTO, ResourceUtil.get().getString("hibernate.hbm2ddl.auto"));
+		    hibernateProperties.setProperty(Environment.SHOW_SQL, ResourceUtil.get().getString("hibernate.show_sql"));
+		    hibernateProperties.setProperty("hibernate.connection.autoreconnect", "true");
+			hibernateProperties.setProperty("hibernate.connection.autoreconnectforpools", "true");
+			hibernateProperties.setProperty("hibernate.c3p0.idle_test_period", "30");
+			hibernateProperties.setProperty(Environment.C3P0_MIN_SIZE, "10");
+			hibernateProperties.setProperty("hibernate.connection.provider_class", "org.hibernate.connection.C3P0ConnectionProvider");
+		    
+	        Configuration hibernateConfiguration = new Configuration()
+            .addAnnotatedClass(User.class)
+            .addAnnotatedClass(UserData.class)
+            .addAnnotatedClass(ASCPCDaily.class)
+            .addAnnotatedClass(RTSPPDaily.class)
+            .setProperties(hibernateProperties);
+	        
+            logger.info("Initializing Hibernate");
+            HibernateUtil.getInstance(hibernateConfiguration);
+            if (!HibernateUtil.test())
+        	    logger.error("Hibernate could not be initialized");
+
+			User user = UserFacade.findByUsername("admin");
+			if (user == null) {
+				logger.info("Creating Administrator (admin) Account");
+				user = new User();
+			    user.setUsername("admin");
+			    user.setDisplay("Administrator Account");
+			    user.setPassword(new PasswordEncoder().encodePassword("admin", null));
+			    user.setType(User.UserType.ADMINISTRATOR);
+			    user = UserFacade.createOrUpdate(user);
+			}
+			
+            logger.info("Initializing ActiveMQ");
+			ActiveMQUtil.getInstance();
+			
+		}
+		catch (Exception e) {
+		    logger.error(e.getCause(), e);
+		}
+	}
+}

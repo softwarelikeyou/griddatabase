@@ -1,0 +1,14 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" name="sidebar"?>
+<vbox id="sidebar" spacing="0" width="100%" pack="stretch,end">
+	<toolbarbutton 
+		image="${sly:getImageURL('dashboard', 'medium')}" 
+		href="/index.zul" 
+		label="${sly:getLabel('Labels.UI.dashboard')}" width="100%"
+		sclass="@{self, converter='com.softwarelikeyou.viewcontroller.converter.SidebarStyleClassConverter'}"/>
+	<toolbarbutton 
+		image="${sly:getImageURL('users', 'medium')}" 
+		href="/User/" 
+		label="${sly:getLabel('Labels.UI.users')}" width="100%"
+		sclass="@{self, converter='com.softwarelikeyou.viewcontroller.converter.SidebarStyleClassConverter'}"
+		visible="${sly:isAdministrator()}"/>
+</vbox>

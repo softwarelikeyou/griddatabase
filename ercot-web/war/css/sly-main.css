@@ -1,0 +1,260 @@
+html { 
+	height: 100%; 
+	width: 100%; 
+}
+
+body { 
+	padding: 0; 
+	margin: 0; 
+}
+
+a { 
+	color: #004488;
+}
+
+a:hover { 
+	color: #0088BB; 	
+}
+
+.z-window-embedded-tr,.z-window-embedded-tl {
+	display: none;	
+}
+
+.z-window-embedded-tr,.z-window-embedded-tl,.z-window-embedded-hl,.z-window-embedded-hr,.z-window-embedded-hm {
+	padding: 0; 
+	background-image: none;
+}
+
+.z-window-embedded-header {
+	background: transparent url(/zkau/web/8914214/gray/zkex/zul/img/layout/borderlayout-hm.png) repeat-x scroll 0pt 0pt;
+	padding-right: 5px;
+	padding-top: 5px;		
+}
+
+.z-listheader .z-listheader-cnt { 
+	position: relative;
+}
+
+.z-listheader-btn {
+	background: transparent no-repeat left center;
+	display: none; position: absolute; width: 14px; right: 0; top: 0; z-index: 15;
+	cursor: pointer;
+	background-image: url(/zkau/web/gray/zul/img/grid/hd-btn.png);
+}
+
+.z-listheader-over .z-listheader-btn, .z-listheader-visi .z-listheader-btn {
+	display: block;
+}
+
+a.z-listheader-btn:hover {
+	background-position: -14px center;
+}
+
+.z-listheader-over {
+	background: #ACDDF9 repeat-x 0 0;
+	background-image: url(/zkau/web/gray/zul/img/grid/column-over.png);
+}
+
+.z-listhead-menu-grouping .z-menu-item-img {
+	background-image:url(/zkau/web/gray/zul/img/grid/menu-group.png);
+}
+
+.z-listhead-menu-asc .z-menu-item-img {
+	background-image:url(/zkau/web/gray/zul/img/grid/menu-arrowup.png);
+}
+
+.z-listhead-menu-dsc .z-menu-item-img {
+	background-image:url(/zkau/web/gray/zul/img/grid/menu-arrowdown.png);
+}
+
+.z-combobox-readonly { 
+	background: #FFFFFF url(/zkau/web/8914214/gray/zul/img/misc/text-bg.gif) repeat-x scroll 0 0;	
+}
+
+.z-combobox-readonly-disd { 
+	background: #E9E9E9 none repeat scroll 0 0 !important;	
+}
+
+td.z-row-inner, .z-checkbox label, .z-checkbox label img, .z-checkbox input { 
+	vertical-align: middle;
+}
+
+.z-checkbox { 
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.z-hbox * .z-label, .z-hbox * td { 
+	vertical-align: middle;
+}
+
+.sly-list-cell { 
+	border-right: 1px solid #cccccc; 
+	border-bottom: 1px solid #cccccc; 
+	border-collapse: collapse;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.sly-groupbox { 
+	margin: 5px 5px 10px 5px;
+}
+
+.sly-groupbox .z-groupbox-cnt { 
+	padding: 0;	
+}
+
+.sly-groupbox .z-groupbox-cnt { 
+	padding: 0;	
+}
+
+.sly-groupbox .z-groupbox-cnt .z-grid { 
+	border: 0;	
+}
+
+.sly-groupbox .z-groupbox-cnt .z-label { 
+	margin: 3px;	
+}
+
+.sly-groupbox .z-groupbox-cnt .z-vbox { 
+	margin-top: 3px;
+}
+
+.sly-groupbox .z-groupbox-cnt .z-vbox .z-hbox { 
+	margin-left: 3px;
+}
+
+.sly-groupbox .z-groupbox-cnt .z-vbox .z-grid { 
+	border-top: 1px solid #ABABAB;
+}
+
+.sly-caption { 
+	vertical-align: middle;
+}
+
+.sly-checkbox { 
+	text-align: left; 
+	white-space: nowrap; 
+	vertical-align: middle;
+}
+
+.sly-sidebar-item { 
+	vertical-align: middle; 
+	white-space: nowrap; 
+	text-decoration: none; 
+	width: 100%; 
+	display: block; 
+	padding: 0; 
+	margin: 0; 
+	background: transparent url(/zkau/web/ed69dde/gray/zul/img/layout/borderlayout-hm.png) repeat-x scroll 0pt 0pt;
+	font-weight: bold;
+	color: #004488;
+	border: 0;
+}
+
+.sly-sidebar-item-highlighted { 
+	vertical-align: middle; 
+	white-space: nowrap; 
+	text-decoration: none; 
+	width: 100%; 
+	display: block; 
+	padding: 0; 
+	margin: 0; 
+	background: transparent url(/images/sidebar-highlighted.png) repeat-x scroll 0pt 0pt;
+	font-weight: bold;
+	color: #004488;
+	border: 0;
+}
+
+.sly-sidebar-item * .z-toolbarbutton-cnt, .sly-sidebar-item-highlighted * .z-toolbarbutton-cnt { 
+	font-weight: bold;
+	padding: 3px;
+}
+
+.sly-list-header { 
+	vertical-align: middle; 
+	white-space: nowrap; 
+	text-decoration: none; 
+	width: 100%; 
+	display: block; 
+	padding: 4px; 
+	margin: 0; 
+	background: transparent url(/zkau/web/ed69dde/gray/zkex/zul/img/layout/borderlayout-hm.png) repeat-x scroll 0pt 0pt;
+}
+
+.sly-button-footer { 
+	background: transparent url(/zkau/web/ed69dde/gray/zkex/zul/img/layout/borderlayout-hm.png) repeat-x scroll 0pt 0pt;
+}
+
+.sly-select-all-checkbox { 
+	vertical-align: middle;
+	text-align: center;
+}
+
+.sly-header-bar { 
+	background: transparent url(/images/dark-blue-gradient.png) repeat-x scroll 0pt -1px;
+	padding: 6px;
+	color: #eeeeee;
+	font-family:tahoma,arial,verdana,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+}
+
+.sly-top-bar { 
+	background: transparent url(/images/dark-blue-gradient.png) repeat-x scroll 0pt -1px;
+	color: #eeeeee;
+	font-family:tahoma,arial,verdana,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	margin: 0;
+	padding: 0;	
+	height: 100%;
+}
+
+.sly-top-bar * td { 
+	vertical-align: middle;
+}
+
+.sly-top-bar * a img { 
+	padding-right: 3px;	
+}
+
+.sly-over-hard-quota { 
+	color: red;
+}
+
+.sly-over-soft-quota { 
+	color: orange;
+	font-weight: bold;
+}
+
+.sly-actions-panel { 
+	padding: 3px;
+}
+
+.sly-bold { 
+	font-weight: bold;
+}
+
+.sly-bold-red { 
+	color: red;
+	font-weight: bold;
+}
+
+.sly-bold-green { 
+	color: green;
+	font-weight: bold;
+}
+
+.sly-nowrap { 
+	white-space: nowrap;
+}
+
+.z-label img { 
+	padding-right: 5px;
+	vertical-align: middle;
+}
+
+table.z-vbox tbody tr td table { 
+	width: 100%;
+}

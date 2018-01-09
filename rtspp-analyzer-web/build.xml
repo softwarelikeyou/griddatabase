@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="rtspp-analyzer-web" default="build" basedir="../">
+	
+ <property name="project.dir" value="${basedir}/${ant.project.name}"></property>
+ <property name="build.dir" value="${project.dir}/war/WEB-INF/classes"></property>
+ <property name="lib.dir" value="${project.dir}/war/WEB-INF/lib"></property>
+ <property name="src.dir"   value="${project.dir}/src"></property>
+ <property name="war.file" value="${basedir}/${ant.project.name}/${ant.project.name}.war" />
+ <property name="tomcat.lib.dir" value="/Users/steve/Library/Tomcat/7.0/lib/" />
+
+ <path id="project.classpath">
+  <pathelement location="${build.dir}"/>
+  <fileset dir="${lib.dir}" includes="*.jar"/>
+  <fileset dir="${tomcat.lib.dir}" includes="servlet-api.jar"/>
+ </path>
+	
+ <target name="clean" description="Cleans this project">
+  <delete dir="${build.dir}" failonerror="false" />
+  <delete file="${war.file}" failonerror="false" />
+ </target>
+  
+ <target name="javac" depends="clean" description="Compile java source">
+  <mkdir dir="${build.dir}"/>
+  <mkdir dir="${lib.dir}"/>
+  <copy todir="${lib.dir}">
+   <fileset dir="${basedir}/lib" includes="*.jar"/>
+  </copy>
+  <javac srcdir="${src.dir}" 
+         includes="**" 
+         encoding="utf-8"
+         destdir="${build.dir}"
+         source="1.6" 
+         target="1.6" 
+         nowarn="true"
+         debug="true" 
+         debuglevel="lines,vars,source"
+         includeantruntime="false">
+  	<exclude name="com/softwarelikeyou/test/*.java" />
+  	<compilerarg value="-Xlint:deprecation"/>
+  	<compilerarg value="-XDignore.symbol.file"/>
+   <classpath refid="project.classpath"/>
+  </javac>
+  <copy todir="${build.dir}">
+   <fileset dir="${src.dir}" excludes="**/*.java"/>
+  </copy>
+ </target>
+	
+ <target name="build" depends="javac" description="Build this project" />
+
+ <target name="war" depends="build" description="Create a war file">
+  <zip destfile="${war.file}" basedir="${project.dir}/war"/>
+ </target>
+ 
+ <target name="help">
+  <echo>
+   Usage: 
+    ant build: Build this project 
+    ant war: Create a war file
+    ant clean: Cleans this project
+  </echo>
+ </target>
+
+</project>

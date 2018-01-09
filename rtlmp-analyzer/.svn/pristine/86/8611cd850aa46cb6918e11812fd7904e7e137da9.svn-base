@@ -1,0 +1,11 @@
+hibernate.connection.driver_class=com.mysql.jdbc.Driver
+hibernate.connection.url=jdbc:mysql://192.168.0.201/ercot
+hibernate.connection.username=root
+hibernate.connection.password=dinky01
+hibernate.dialect = org.hibernate.dialect.MySQLDialect
+hibernate.hbm2ddl.auto=validate
+hibernate.show_sql=false
+
+collector.base.file.url=http://192.168.0.201/ercot-file-collector/download?type=
+
+remote-event-url=http://192.168.0.202:8080/remoteEvent

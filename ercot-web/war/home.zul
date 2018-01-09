@@ -1,0 +1,136 @@
+<?page title="Grid Database"?>
+<zk>
+ <style>
+ 
+ .container {
+   width: 900px;
+   margin: 0px auto; 
+   text-align: left;
+ }
+ 
+ .header {
+   height: 101px;
+ }
+ 
+   .center_bottom {
+  margin-top: 10px; 
+  margin-left: 10px; 
+  width: 790px;
+  padding: 0px 5px 0px 5px;
+  /* border-width: 1px; */ 
+  /* border-style: solid; */
+  /* border-color: #A9A9A9; */
+  height: 300px;
+  display:inline-block;
+ }
+ 
+ .logo {
+  width: 188px; 
+  height: 101px; 
+  background: url(/images/logo.png) 10% 50% no-repeat;
+  float: left;
+ }
+ 
+ .logo a {
+  display: block;
+  text-indent: -9999px;
+  width: 188px; 
+  height: 101px;
+ }
+
+ .toolbar {
+  width: 705px;
+  height: 38px; 
+  float: right;
+  margin-right: 7px; 
+  margin-top: 32px;
+ }
+ 
+ .toolbar button:hover {
+  color: black;
+  background-color: darkgray;
+  border-style: outset;
+ }
+ 
+  .center_right {
+  float: left;
+  width: 280px;
+  height: 300px;
+  margin-left: 10px;
+  padding: 0px 5px 0px 5px;
+  /* border-width: 1px; */ 
+  /* border-style: solid; */
+  /* border-color: #A9A9A9; */
+ }
+ 
+   .footer {
+  margin-top: 10px; 
+  margin-left: 10px; 
+  width: 800px;
+  height: 30px;
+  display:inline-block;
+ }
+ 
+ .copyright {
+  width: 300px;
+  float: left; 
+  color: #0574b5;
+  font-size: 11px;
+ }
+ 
+
+ .center_left {  
+  float:left;  
+  margin-left: 10px;
+  width: 500px;
+  height: 300px;
+ }​
+ 
+ </style>
+ <div sclass="container">
+  <div sclass="header">
+   <div sclass="logo"/>
+   <div sclass="toolbar">
+    <button label="Solutions" width="100px" height="30px" style="font-weight: bold; font-size: 14px;" />
+    <button label="Reports"   width="100px" height="30px" style="font-weight: bold; font-size: 14px"/>
+    <button label="Company"   width="100px" height="30px" style="font-weight: bold; font-size: 14px"/>
+    <button label="Support"   width="100px" height="30px" style="font-weight: bold; font-size: 14px"/>
+    <button label="Contact"   width="100px" height="30px" style="font-weight: bold; font-size: 14px"/>
+    <button label="Login"     width="100px" height="30px" style="font-weight: bold; font-size: 14px">
+    <attribute name="onClick"><![CDATA[ 
+     Executions.sendRedirect("/index.zul"); ]]>
+    </attribute>
+    </button>
+   </div>
+  </div>
+  <div class="center_left">
+   <image width="500px" height="300px" src="/images/towers.jpg"/>
+  </div>
+  <div class="center_right">
+   <html>
+    <![CDATA[
+     <h3>When real-time energy information is important to gain your competitive advantage.</h3>
+    ]]>
+   </html>
+  </div>
+  <div sclass="center_bottom">
+   <html>
+    <![CDATA[
+     <p>Grid Data has the <strong>largest real-time database</strong> of power fundamentals in North America. 
+     Our customers enjoy simple and immediate access to our entire portfolio through our advanced solutions. 
+     Enjoy timely and accurate coverage of de-regulated nodal markets, transmission,
+     generation, weather, environmental, broker and exchange information.</p>
+    ]]>
+   </html>
+  </div>
+  <div sclass="footer">
+   <div sclass="copyright">
+    <html>
+     <![CDATA[
+      &copy; 2012 Grid Database - All Rights Reserved.
+     ]]>
+    </html>
+   </div>
+  </div>
+ </div>
+</zk>

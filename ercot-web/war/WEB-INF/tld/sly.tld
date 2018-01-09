@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib>
+    
+    <description>A taglib to define some EL accessible functions.</description>
+    <short-name>slytaglib</short-name>
+    <uri>http://www.softwarelikeyou.com/</uri>
+    
+    <function>
+    	<description>Returns the image URL associated with the image type and size</description>
+    	<name>getImageURL</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.ELFunctions</function-class>
+    	<function-signature>java.lang.String getImageURL( java.lang.String, java.lang.String )</function-signature>
+    </function>
+        
+    <function>
+    	<description>Returns the label associated with the provided i18n key</description>
+    	<name>getLabel</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.ELFunctions</function-class>
+    	<function-signature>java.lang.String getLabel( java.lang.String )</function-signature>
+    </function>
+
+	<function>
+    	<description>Returns the label associated with the provided i18n key</description>
+    	<name>getLabelWithLocale</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.ELFunctions</function-class>
+    	<function-signature>java.lang.String getLabel( java.util.Locale, java.lang.String )</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns the message associated with the provided i18n key</description>
+    	<name>getMessage</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.ELFunctions</function-class>
+    	<function-signature>java.lang.String getMessage( java.lang.String )</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns the label associated with the provided i18n key</description>
+    	<name>getMessageWithParams</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.ELFunctions</function-class>
+    	<function-signature>java.lang.String getMessageWithParams( java.lang.String, java.lang.Object[] )</function-signature>
+    </function>    
+
+    <function>
+    	<description>Calls static getFieldID on a Component to get a field id</description>
+    	<name>getComponentID</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.ELFunctions</function-class>
+    	<function-signature>java.lang.Object getComponentID( java.lang.String, java.lang.String )</function-signature>
+    </function>
+        
+    <function>
+    	<description>Returns the value of a static member of a class</description>
+    	<name>getStaticField</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.ELFunctions</function-class>
+    	<function-signature>java.lang.Object getStaticField( java.lang.String )</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns a boolean indicating whether or not the user is logged in.</description>
+    	<name>isLoggedIn</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.SessionUtil</function-class>
+    	<function-signature>java.lang.Boolean isLoggedIn()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns a license-specific localized string for use in the product header bar</description>
+    	<name>productHeaderString</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.FeatureUtil</function-class>
+    	<function-signature>java.lang.String productHeaderString()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns the username of the current user, or an empty string if there is no current user</description>
+    	<name>getCurrentUsername</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.SessionUtil</function-class>
+    	<function-signature>java.lang.String getCurrentUsername()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns the display name of the current user, or an empty string if there is no current user</description>
+    	<name>getCurrentDisplayName</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.SessionUtil</function-class>
+    	<function-signature>java.lang.String getCurrentDisplayName()</function-signature>
+    </function>
+    
+     <function>
+    	<description>Returns vendor copyright string</description>
+    	<name>vendorCopyrightString</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.FeatureUtil</function-class>
+    	<function-signature>java.lang.String vendorCopyrightString()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns vendor web site URL string</description>
+    	<name>vendorWebsiteString</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.FeatureUtil</function-class>
+    	<function-signature>java.lang.String vendorWebsiteString()</function-signature>
+    </function>
+
+    <function>
+    	<description>Returns the help web site URL string</description>
+    	<name>helpWebsiteURL</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.FeatureUtil</function-class>
+    	<function-signature>java.lang.String helpWebsiteURL()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns the sign up web site URL string</description>
+    	<name>signupWebsiteURL</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.FeatureUtil</function-class>
+    	<function-signature>java.lang.String signupWebsiteURL()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns a boolean indicating whether or not the current user is a administrator.</description>
+    	<name>isAdministrator</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.SessionUtil</function-class>
+    	<function-signature>java.lang.Boolean isAdministrator()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns a boolean indicating whether or not the current user is a premium user.</description>
+    	<name>isPremium</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.SessionUtil</function-class>
+    	<function-signature>java.lang.Boolean isPremium()</function-signature>
+    </function>
+           
+    <function>
+    	<description>Returns a boolean indicating whether or not the current user is a freeemium user.</description>
+    	<name>isFreemium</name>
+    	<function-class>com.softwarelikeyou.viewcontroller.SessionUtil</function-class>
+    	<function-signature>java.lang.Boolean isFreemium()</function-signature>
+    </function>	
+    
+    <function>
+     <description>Returns the Google Map API key</description>
+     <name>googleMapAPIKey</name>
+     <function-class>com.softwarelikeyou.viewcontroller.FeatureUtil</function-class>
+     <function-signature>java.lang.String googleMapAPIKey()</function-signature>
+    </function>
+    
+</taglib>

@@ -1,0 +1,17 @@
+package com.softwarelikeyou.viewcontroller.dashboard;
+
+import org.zkoss.zk.ui.event.ClientInfoEvent;
+
+import com.softwarelikeyou.viewcontroller.BaseController;
+import com.softwarelikeyou.viewcontroller.SessionUtil;
+
+public class Controller extends BaseController {
+	private static final long serialVersionUID = 1L; 
+			
+	protected static final String DASHBOARD_CENTER_ID = "dashboardCenter";
+		
+	public void onClientInfo(ClientInfoEvent event) {
+	    SessionUtil.setScreenHeight(event.getDesktopHeight());
+	    SessionUtil.setScreenWidth(event.getDesktopWidth());
+	}
+}

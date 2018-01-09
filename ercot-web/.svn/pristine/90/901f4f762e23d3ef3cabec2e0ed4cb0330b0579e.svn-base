@@ -1,0 +1,147 @@
+package com.softwarelikeyou.viewcontroller.ercot;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import org.zkoss.zk.ui.Components;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.ext.AfterCompose;
+import org.zkoss.zkplus.databind.AnnotateDataBinder;
+import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Filedownload;
+import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Radiogroup;
+
+import com.softwarelikeyou.facade.ASCPCDailyFacade;
+import com.softwarelikeyou.facade.RTSPPDailyFacade;
+import com.softwarelikeyou.model.entity.Daily;
+import com.softwarelikeyou.viewcontroller.BaseWindow;
+
+public class DownloadWindow extends BaseWindow implements AfterCompose {
+	private static final long serialVersionUID = 1L;
+
+	private static DecimalFormat DECIMAL = new DecimalFormat("###0.00");
+	private static SimpleDateFormat DASH_LONG_DATE = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss aa");
+	private static SimpleDateFormat DASH_SHORT_DATE = new SimpleDateFormat("MM-dd-yyyy");
+	
+	protected Datebox startDatebox;
+	protected Datebox endDatebox;
+	protected Radiogroup type;
+	
+	protected AnnotateDataBinder binder;
+
+	@Override
+	public void afterCompose() {
+		Components.wireVariables(this, this);
+		Components.addForwards(this, this);
+	    binder = new AnnotateDataBinder(this);
+	    binder.loadAll();
+	}
+	
+	public void onClick$download(Event event) {	
+		String selection = type.getSelectedItem().getId();
+		
+		String fileName = selection + DASH_SHORT_DATE.format(startDatebox.getValue()) + "to" + DASH_SHORT_DATE.format(endDatebox.getValue()) + ".csv";
+		Calendar startCal = new GregorianCalendar();
+		startCal.setTime(startDatebox.getValue());
+
+		Calendar endCal = new GregorianCalendar();
+		endCal.setTime(endDatebox.getValue());
+
+		startCal.set(Calendar.HOUR_OF_DAY, 0);
+		startCal.set(Calendar.MINUTE, 0);
+		startCal.set(Calendar.SECOND, 0);
+    	
+		endCal.set(Calendar.HOUR_OF_DAY, 23);
+		endCal.set(Calendar.MINUTE, 59);
+		endCal.set(Calendar.SECOND, 59);
+		
+		List<Daily> list = null;
+		StringBuffer rows = null;
+
+		try {
+		    switch (selection) {
+		        case "dailyascpc":
+					list = ASCPCDailyFacade.findByBetweenDates(startCal.getTime(), endCal.getTime());
+					if (list != null) 
+						rows = writeDaily(list);
+			        break;
+		        case "ascpc":
+			        break;
+		        case "dailyrtspp":
+					list = new ArrayList<Daily>();
+					for (Daily daily : RTSPPDailyFacade.findByBetweenDates(startCal.getTime(), endCal.getTime())) {
+						if (daily.getName().startsWith("HB"))
+							list.add(daily);
+					}
+					if (list.size() > 0) 
+						rows = writeDaily(list);
+			        break;
+	 	        case "rtspp":
+			        break;
+		    }   
+		}
+		catch (Exception e) {
+			try {
+				Messagebox.show("Could not retrieve " + type.getSelectedItem().getLabel(), "Error", Messagebox.OK, Messagebox.NONE);
+			}
+			catch( InterruptedException ex ) {
+				ex.printStackTrace();
+			}
+		}
+		
+		if (rows == null) {
+		    try {
+				Messagebox.show("No " + type.getSelectedItem().getLabel() + " data was found", "Info", Messagebox.OK, Messagebox.NONE);
+			}
+			catch( InterruptedException ex ) {
+				ex.printStackTrace();
+			}
+		    return;
+		}
+			
+		try {
+		    FileOutputStream fOut = new FileOutputStream(fileName);
+		    fOut.write(rows.toString().getBytes());
+		    fOut.flush();
+		    fOut.close();
+		    File file = new File(fileName);
+	    	Filedownload.save(file, fileName);
+		}
+		catch (IOException e) {
+		    try {
+				Messagebox.show("Unable to download file", "Error", Messagebox.OK, Messagebox.NONE);
+			}
+			catch( InterruptedException ex ) {
+				ex.printStackTrace();
+			}
+		    return;
+		}
+	}
+
+	private StringBuffer writeDaily(final List<Daily> list) {
+		if (list == null)
+			return null;
+		
+		StringBuffer rows = new StringBuffer();
+		rows.append("Pricing, Date, Low, Avg, High, AvgChg" + "\n");
+		
+		for (Daily row : list) {
+		    rows.append(row.getName() + " [" + row.getType() + "]" + ",");
+			rows.append(DASH_LONG_DATE.format(row.getIntervalDate()).toString() + ",");
+			rows.append(DECIMAL.format(row.getLow()) + ",");
+			rows.append(DECIMAL.format(row.getAverage()) + ",");
+			rows.append(DECIMAL.format(row.getHigh()) + ",");
+			rows.append(DECIMAL.format(row.getAverageChange()));
+			rows.append("\n");
+		}
+		return rows;
+	}
+}

@@ -1,0 +1,4 @@
+<vbox id="actionsPanel" 
+      class="sly-actions-panel"
+      use="com.softwarelikeyou.viewcontroller.ercot.Actions">	
+</vbox>

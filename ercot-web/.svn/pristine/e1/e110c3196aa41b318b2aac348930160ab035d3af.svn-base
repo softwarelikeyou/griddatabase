@@ -1,0 +1,14 @@
+<vbox id="actionsPanel" 
+      class="sly-actions-panel"
+      use="com.softwarelikeyou.viewcontroller.ercot.Actions">
+ <a image="${sly:getImageURL('save', 'small')}" 
+	label="Download"
+	id="download" 
+	style="text-decoration: none"
+	sclass="sly-action"/>	
+ <a image="${sly:getImageURL('chart', 'small')}" 
+	label="LMP"
+	id="lmp" 
+	style="text-decoration: none"
+	sclass="sly-action"/>
+</vbox>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ercot-i18n" default="help" basedir="../">
+
+ <property name="project.dir" value="${basedir}/${ant.project.name}"></property>
+ <property name="build.dir" value="${project.dir}/bin"></property>
+ <property name="src.dir"   value="${project.dir}/src"></property>
+ <property name="lib.dir"   value="${project.dir}/lib"></property>
+ <property name="jar.file" value="${basedir}/${ant.project.name}.jar" />
+ 
+ <path id="project.classpath">
+  <fileset dir="${lib.dir}" includes="*.jar"/>
+ </path>
+
+ <taskdef name="i18n" classpathref="project.classpath" classname="mazz.i18n.ant.I18NAntTask" />
+	 	
+ <target name="clean" description="Clean classes dir">
+  <delete dir="${build.dir}" quiet="true"></delete>
+  <delete file="${jar.file}" failonerror="false" />
+ </target>
+ 
+ <target name="javac" depends="clean" description="Compile source">
+  <mkdir dir="${build.dir}"/>
+  <javac srcdir="${src.dir}" 
+  	     destdir="${build.dir}" 
+  	     verbose="false" 
+  	     debug="on" 
+  	     includeantruntime="false">
+   <classpath refid="project.classpath"></classpath>
+  </javac>
+ </target>
+	
+ <target name="i18nc" description="Produce i18n property files">
+  <i18n outputdir="${build.dir}" 
+   	  	defaultlocale="en" 
+   	  	verbose="false"
+   		verify="true">
+   <classpath>
+    <pathelement path="${build.dir}"/>
+    <pathelement path="${basedir}/ercot-om.jar"/>  
+   </classpath>
+   <classfileset dir="${build.dir}">
+   	<include name="**/*.class"/>
+   </classfileset>
+  </i18n>	
+ </target>
+   	
+ <target name="build" depends="javac, i18nc" description="Build this project" />
+
+ <target name="jar" depends="build" description="Produce jar file">
+  <jar destfile="${jar.file}" basedir="${build.dir}" />
+ </target>
+
+ <target name="help">
+  <echo>
+   Usage: 
+    ant build: Build this project 
+    ant jar: Create a war file
+    ant clean: Cleans this project
+  </echo>
+ </target>
+</project>

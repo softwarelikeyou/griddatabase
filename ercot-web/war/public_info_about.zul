@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <window id="helpWindow" 
+	      border="normal"
+	      width="80%"
+	      height="50%"
+	      closable="true" 
+	      sizable="false" 
+	      maximizable="false" 
+	      minimizable="false">
+  <caption image="${sly:getImageURL('help', 'medium')}"
+		   label="${sly:getLabel('Labels.UI.help')}"
+		   sclass="sly-window-caption"/>
+  <iframe src="http://www.linkedin.com/in/stevethomas01" width="100%" height="100%"/>
+ </window>
+</zk>

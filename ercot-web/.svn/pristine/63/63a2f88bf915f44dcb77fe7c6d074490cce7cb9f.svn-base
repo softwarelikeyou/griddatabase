@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Created by ZK Studio
+-->
+
+<zk>
+<!--
+ <system-config>
+  <disable-event-thread/>
+ </system-config>
+-->
+ 
+ <listener>
+  <description>ThreadLocal Synchronization Listener</description>
+  <listener-class>org.zkoss.zkplus.util.ThreadLocalListener</listener-class>
+ </listener>
+
+ <listener>
+  <description>Global Event Updater</description>
+  <listener-class>com.softwarelikeyou.viewcontroller.GlobalUpdater</listener-class>
+ </listener>
+ 
+ <preference>
+  <name>ThreadLocal</name>
+  <value>org.springframework.security.core.context.ThreadLocalSecurityContextHolderStrategy=contextHolder</value>
+ </preference>
+
+ <device-config>
+  <device-type>ajax</device-type>
+  <timeout-uri>/login.zul</timeout-uri>
+ </device-config>
+ 
+ <language-config>
+  <addon-uri>/WEB-INF/classes/metainfo/zk/lang-addon.xml</addon-uri>
+ </language-config>	
+ 
+ <desktop-config>
+  <theme-provider-class>com.softwarelikeyou.viewcontroller.ThemeProvider</theme-provider-class>
+  <desktop-timeout>600</desktop-timeout>
+ </desktop-config>
+
+ <session-config>
+  <session-timeout>1800</session-timeout>
+  <timer-keep-alive>false</timer-keep-alive>
+  <max-desktops-per-session>15</max-desktops-per-session>
+  <max-requests-per-session>5</max-requests-per-session>
+  <max-pushes-per-session>-1</max-pushes-per-session>
+ </session-config>
+
+ <library-property>
+  <name>org.zkoss.zul.Button.mold</name>
+  <value>trendy</value>
+ </library-property> 
+ 
+ <library-property>
+  <name>org.zkoss.zul.progressbox.position</name>
+  <value>center</value>
+ </library-property>
+ 
+</zk>

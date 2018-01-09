@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./lmpWindow"?>
+<zk>
+<window id="lmpWindow" 
+        border="none"
+        use="com.softwarelikeyou.viewcontroller.ercot.LMPWindow">
+ <caption image="${sly:getImageURL('chart', 'small')}"
+		  label="Local Marginal Prices" 
+		  sclass="sly-caption"/>
+ <toolbar style="vertical-align: middle;" 
+	      orient="horizontal"
+	      height="8%">
+  <hlayout spacing=".6em" 
+           style="padding: 5px;">
+   <combobox id="displayCombobox" 
+	         width="70px" 
+	         autodrop="true" 
+	         readonly="true">
+    <comboitem value="Chart" label="Chart"/>	
+    <comboitem value="Table" label="Table"/>								
+   </combobox>
+   <label value="Date" 
+          style="font-size: small"/>
+	<datebox id="datebox" 
+	         format="MM/dd/yyyy"
+	         cols="12" 
+	         onCreate="self.value = new Date()" 
+	         mold="rounded" 
+	         style="white-space: normal;"/>  
+   <label value="Interval" 
+          style="font-size: small"/>
+   <combobox id="intervalCombobox" 
+	         width="70px" 
+	         autodrop="true" 
+	         readonly="true">
+    <comboitem value="5M" label="5 min"/>	
+    <comboitem value="15M" label="15 min"/>	
+    <comboitem value="30M" label="30 min"/>								
+    <comboitem value="1H" label="1 hour"/>																												
+   </combobox>
+   <label value="Type" 
+          style="font-size: small"/>
+   <combobox id="typeCombobox" 
+	         width="70px" 
+	         autodrop="true" 
+	         readonly="true">
+    <comboitem value="HU" label="HU"/>	
+    <comboitem value="LCCRN" label="LCCRN"/>	
+    <comboitem value="LZ" label="LZ"/>								
+    <comboitem value="LZDC" label="LZDC"/>								
+    <comboitem value="PCCRN" label="PCCRN"/>								
+    <comboitem value="PUN" label="PUN"/>								
+    <comboitem value="RN" label="RN"/>													
+   </combobox>
+	<label value="Settlement Point" 
+	       style="font-size: small"/>
+    <combobox id="settlementPointsCombobox" 
+	          width="120px" 
+	          autodrop="true" 
+	          readonly="true"
+		      model="@{lmpWindow.settlementPoints}">
+	 <comboitem self="@{each='item'}"
+			    value="@{item}"
+			    label="@{item.name}"/>					
+	</combobox>
+   </hlayout>
+  </toolbar>
+  <panel>
+   <panelchildren id="lmpPanel">
+   </panelchildren>
+  </panel>
+</window>
+</zk>

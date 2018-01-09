@@ -1,0 +1,29 @@
+<language-addon>
+ <addon-name>sly</addon-name>
+ <language-name>xul/html</language-name>
+ <version>
+  <version-class>com.softwarelikeyou.viewcontroller.Version</version-class>
+  <version-uid>0.0.1</version-uid>
+  <zk-version>5.0.5</zk-version>
+ </version>	
+ <component>
+  <component-name>imagelabel</component-name>
+  <component-class>com.softwarelikeyou.client.component.zul.ImageLabel</component-class>
+  <widget-class>com.softwarelikeyou.client.component.zul.ImageLabel</widget-class>
+  <mold>
+   <mold-name>default</mold-name>
+	<mold-uri>mold/imagelabel.js</mold-uri>
+  </mold>
+ </component>	
+ <component>
+ <component-name>simplelabel</component-name>
+  <component-class>com.softwarelikeyou.client.component.zul.SimpleLabel</component-class>
+  <widget-class>com.softwarelikeyou.client.component.zul.SimpleLabel</widget-class>
+  <mold>
+   <mold-name>default</mold-name>
+   <mold-uri>mold/simple-label.js</mold-uri>
+  </mold>
+ </component>	
+ <javascript src="/css/sly.js" />
+ <stylesheet href="/css/sly-main.css.dsp" type="text/css" />
+</language-addon>

@@ -1,0 +1,4 @@
+<package name="com.softwarelikeyou.client.component.zul" language="xul/html" depends="zul">
+	<widget name="ImageLabel"/>	
+	<widget name="SimpleLabel"/>
+</package>

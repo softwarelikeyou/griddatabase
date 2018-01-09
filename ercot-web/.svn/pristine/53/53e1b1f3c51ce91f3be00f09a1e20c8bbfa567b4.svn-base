@@ -1,0 +1,53 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:zksp="http://www.zkoss.org/2008/zkspring"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                                 http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                                 http://www.springframework.org/schema/security 
+                                 http://www.springframework.org/schema/security/spring-security-2.0.1.xsd
+                                 http://www.zkoss.org/2008/zkspring
+                                 http://www.zkoss.org/2008/zkspring/zkspring.xsd">
+
+ <authentication-manager alias="authenticationManager"/>
+	
+ <beans:bean id="passwordEncoder" 
+             class="com.softwarelikeyou.facade.PasswordEncoder"/>
+ <beans:bean id="userDetailsService" 
+             class="com.softwarelikeyou.facade.UserDetailsService"/>
+   
+ <http auto-config="false" 
+       entry-point-ref="authenticationProcessingFilterEntryPoint">
+  <intercept-url pattern="/public_info**" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />    	
+  <intercept-url pattern="/index.zul*" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />
+  <intercept-url pattern="/signup.zul*" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />
+  <intercept-url pattern="/help.zul*" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />
+  <intercept-url pattern="/css/**" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />
+  <intercept-url pattern="/images/**" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />
+  <intercept-url pattern="/zkau/**" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />
+  <intercept-url pattern="/apidoc/**" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />
+  <intercept-url pattern="/favicon.ico" 
+                 access="IS_AUTHENTICATED_ANONYMOUSLY" />
+  <intercept-url pattern="/**" 
+                 access="IS_AUTHENTICATED_REMEMBERED" />
+  <anonymous/>
+  <logout/>
+  <form-login login-page="/login.zul" 
+	    	     default-target-url="/"
+			     authentication-failure-url="/login.zul?failed=true"
+			     login-processing-url="/j_spring_security_check"/>
+ </http>
+
+ <authentication-provider user-service-ref="userDetailsService">
+  <password-encoder ref="passwordEncoder"/>
+ </authentication-provider>
+    
+</beans:beans>

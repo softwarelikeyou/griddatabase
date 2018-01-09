@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="/WEB-INF/tld/sly.tld" prefix="sly"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./freeReports"?>
+<zk>
+ <hlayout id="freeReports"
+          use="com.softwarelikeyou.viewcontroller.index.FreeReports"
+          style="text-decoration: none; margin-left: 2px; margin-right: 2px; margin-top: 5px; margin-bottom: 5px;">
+  <listbox vflex="true" 
+  		   hflex="true"
+	       width="100%"
+		   model="@{freeReports.model}"
+		   fixedLayout="true">
+   <listhead sizable="false">
+    <listheader label="Pricing"
+                width="54%"
+				sclass="sly-smaller-listheader"		
+				style="text-align: center"/>	
+    <listheader label="Date"
+                width="12%"
+		        tooltiptext="Date"
+				sclass="sly-smaller-listheader"		
+			    style="text-align: center"/>	
+	<listheader label="Low"
+	            width="8%"
+				tooltiptext="Low"
+				sclass="sly-smaller-listheader"	
+				style="text-align: center"/>	
+	<listheader label="Avg"
+                width="8%"
+				tooltiptext="Avg"
+				sclass="sly-smaller-listheader"	
+				style="text-align: center"/>	
+	<listheader label="High"
+                width="8%"
+				tooltiptext="High"
+				sclass="sly-smaller-listheader"	
+				style="text-align: center"/>	
+	<listheader label="AvgChg"
+                width="10%"
+				tooltiptext="AvgChg"
+				sclass="sly-smaller-listheader"	
+				style="text-align: center"/>	
+   </listhead>
+   <listitem self="@{each='item'}" 
+		     value="@{item}">
+    <listcell sclass="sly-list-cell" 
+		      label="@{item, converter='com.softwarelikeyou.viewcontroller.ercot.ASCPCLabelConverter'}"
+		      style="text-align: left"/>
+    <listcell sclass="sly-list-cell" 
+		      label="@{item.intervalDate, converter='com.softwarelikeyou.viewcontroller.converter.ShortDateConverter'}"
+		      style="text-align: center"/>
+    <listcell sclass="sly-list-cell" 
+		      label="@{item.low, converter='com.softwarelikeyou.viewcontroller.converter.FloatPrecisionConverter'}"
+		      style="@{item.low, converter='com.softwarelikeyou.viewcontroller.converter.NegativePriceRedLabelConverter'}"/>
+    <listcell sclass="sly-list-cell" 
+		      label="@{item.average, converter='com.softwarelikeyou.viewcontroller.converter.FloatPrecisionConverter'}"
+		      style="@{item.average, converter='com.softwarelikeyou.viewcontroller.converter.NegativePriceRedLabelConverter'}"/>
+	<listcell sclass="sly-list-cell" 
+		      label="@{item.high, converter='com.softwarelikeyou.viewcontroller.converter.FloatPrecisionConverter'}"
+		      style="@{item.high, converter='com.softwarelikeyou.viewcontroller.converter.NegativePriceRedLabelConverter'}"/>
+	<listcell sclass="sly-list-cell" 
+		      label="@{item.averageChange, converter='com.softwarelikeyou.viewcontroller.converter.FloatPrecisionConverter'}"
+		      style="@{item.averageChange, converter='com.softwarelikeyou.viewcontroller.converter.NegativePriceRedLabelConverter'}"/>
+   </listitem>
+  </listbox>  
+ </hlayout>
+ <label multiline="true" 
+        style="text-decoration: none; font-size:11px; margin-left: 0px; margin-right: 0px; margin-top: 5px; margin-bottom: 5px;"
+        value="SoftwareLikeYou, LLC distributes this information without responsibility for accuracy. All information is accepted on the condition that errors in transmission or omissions shall not be made the basis for any claim, demand or cause for action. The information was obtained from sources believed to be reliable, but we do not guarantee its accuracy.">
+ </label>  
+</zk>

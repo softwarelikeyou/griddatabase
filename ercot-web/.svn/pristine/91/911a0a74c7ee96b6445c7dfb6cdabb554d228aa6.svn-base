@@ -1,0 +1,90 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./downloadWindow"?>
+<zk>
+ <window id="downloadWindow"
+         border="normal"
+         use="com.softwarelikeyou.viewcontroller.ercot.DownloadWindow">
+  <caption image="${sly:getImageURL('save', 'small')}"
+		   label="Downloads" 
+		   sclass="sly-caption"/>
+  <radiogroup id="type"/>
+  <grid width="100%">
+   <columns>
+    <column/>
+   </columns>
+   <rows>
+	<row>
+	 <radio selected="true" 
+	        id="dailyascpc" 
+	        label="Daily Ancillary Services Report" 
+	        radiogroup="type"/>
+	</row>
+	<row>
+	 <radio id="ascpc" 
+	        label="Ancillary Services" 
+	        radiogroup="type"/>
+	</row>
+	<row>
+	 <radio id="dailyrtspp" 
+	        label="Daily Settlement Point Prices Report" 
+	        radiogroup="type"/>
+	</row>
+    <row>
+	 <radio id="rtspp" 
+	        label="Settlement Point Prices" 
+	        radiogroup="type"/>
+	</row>
+	<row>
+	 <cell>
+	  <vlayout vflex="true"
+               style="padding: 0px; text-align: left; white-space: normal">
+       <hlayout hflex="true" 
+                style="padding: 0px; white-space: normal">
+	    <datebox id="startDatebox" 
+	             format="MM/dd/yyyy kk:mm:ss"
+	             timeZone="GMT-6" 
+	             timeZonesReadonly="false"
+	             onCreate="self.value = new Date(System.currentTimeMillis()-(long) 1000.0 * 60 * 60 * 24)"
+	             constraint="after 20040101"
+	             cols="20" 
+	             mold="rounded" 
+	             style="white-space: normal;"/>
+	    <label value="Start" 
+	           style="font-size: small"/>
+	   </hlayout>
+	  </vlayout>
+	 </cell>
+	</row>
+	<row>
+	 <cell>
+	  <vlayout vflex="true"
+               style="padding: 0px; text-align: left; white-space: normal">
+       <hlayout hflex="true" 
+                style="padding: 0px; white-space: normal">
+	    <datebox id="endDatebox" 
+	             format="MM/dd/yyyy kk:mm:ss"
+	             onCreate="self.value = new Date(System.currentTimeMillis())"
+	             timeZone="GMT-6" 
+	             timeZonesReadonly="false"
+	             constraint="no empty, no future: now or never" 
+	             cols="20" 
+	             mold="rounded" 
+	            style="white-space: normal;"/>
+	    <label value="End" 
+	           style="font-size: small"/>    
+	   </hlayout>
+      </vlayout>
+     </cell>
+	</row>
+	<row>
+	 <cell>
+	  <a image="${sly:getImageURL('save', 'small')}" 
+	     tooltiptext="Download" 
+	     label="Download"
+	     id="download"
+	     style="font-weight:bold;"/>  
+	 </cell>
+	</row>
+   </rows>
+  </grid>  
+</window>
+</zk>

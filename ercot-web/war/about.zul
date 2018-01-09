@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="/WEB-INF/tld/sly.tld" prefix="sly"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <window id="aboutWindow" 
+	      border="normal"
+	      width="50%"
+	      height="50%"
+	      closable="true" 
+	      sizable="false" 
+	      maximizable="false" 
+	      minimizable="false"
+	      style="text-align: center; vertical-align: middle; margin-top: 100px;">
+  <caption image="${sly:getImageURL('help', 'medium')}"
+		     label="${sly:getLabel('Labels.UI.about')}"
+		     sclass="sly-window-caption"/>	
+	  <space orient="horizontal"/>
+     <a label="${sly:getLabel('Labels.UI.contact-information')}"
+		  src="${sly:getImageURL('id', 'small')}" 
+		  tooltip="${sly:getLabel('Labels.UI.contact-information')}"
+		  href="http://www.linkedin.com/in/stevethomas01"
+		  target="_blank"
+		  style="text-decoration: none; font-weight: bold; color: black;"/>
+ </window>
+</zk>

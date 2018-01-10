@@ -1,0 +1,50 @@
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .west {
+   height: 715px;
+   width: 80px;
+   margin: auto;
+   padding: auto;
+   display: inline-block;
+   float: left;
+   border-width: 1px; 
+   border-style: solid;  
+   border-color: #E8E8E8; 
+   border-top-color: white; 
+   border-left-color: white; 
+   border-bottom-color: white; 
+  }
+  .west-north {
+   height: 235px;
+   width: 80px;
+   margin: auto;
+   padding: auto;
+   display: inline-block;
+  }
+  .west-south {
+   height: 240px;
+   width: 80px;
+   margin: auto;
+   padding: auto;
+   display: inline-block;
+  }
+  .east {
+   height: 800px;
+   width: 942px;
+   margin: auto;
+   padding: auto;
+   display: inline-block;
+  }
+ </style>
+  
+ <div sclass="west">   
+  <div sclass="west-north">
+   <include src="/sidebar.zul"/>
+  </div>
+  <div sclass="west-south"/>
+ </div>
+ <div id="east" sclass="east">
+  <include src="/center-right.zul"/>
+ </div>
+
+</zk>

@@ -1,0 +1,30 @@
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .sidebar {
+   height: 240px;
+   width: 80px;
+   margin: auto;
+   padding: auto;
+  }
+  .sidebar-button {
+   width: 75px;
+   height: 25px; 
+   font-weight: bold; 
+   font-size: 11px;
+   text-align: center;
+  }
+  .sidebar button:hover {
+   color: black;
+   background-color: darkgray;
+   border-style: outset;
+   cursor: hand; 
+   cursor: pointer;
+  }  
+ </style>
+ <vbox sclass="sidebar" pack="start" align="center">
+  <button sclass="sidebar-button" label="Dashboard" href="/index.zul"/>
+  <button sclass="sidebar-button" label="ERCOT" href="/Portal/ERCOT" visible="${gdb:isLoggedIn()}"/>
+  <button sclass="sidebar-button" label="User" href="/Portal/User" visible="${gdb:isAdministrator()}"/>
+ </vbox>
+</zk>

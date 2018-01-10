@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./lmpBox"?>
+<zk>
+ <style>
+ .lmpBox {
+  margin-left: auto;
+  margin-right: auto; 
+ }
+ </style>
+ <vbox id="lmpBox" use="com.griddatabase.viewcontroller.ercot.rtlmp.LMPBox" align="center" sclass="lmpBox">
+  <hbox align="center">
+   <combobox id="displayCombobox" width="70px" autodrop="true" readonly="true">
+    <comboitem value="Chart" label="Chart"/>	
+    <comboitem value="Table" label="Table"/>								
+   </combobox>
+   <label value="Settlement Type" style="font-size: small"/>
+   <combobox id="typeCombobox" width="90px" autodrop="true" readonly="true">
+    <comboitem value="HU" label="Hub"/>	
+    <!-- <comboitem value="LCCRN" label="LCCRN"/> -->
+    <comboitem value="LZ" label="Load Zone"/>								
+    <!-- <comboitem value="LZDC" label="LZDC"/>	-->							
+    <!-- <comboitem value="PCCRN" label="PCCRN"/> -->							
+    <!-- <comboitem value="PUN" label="PUN"/> -->						
+    <!-- <comboitem value="RN" label="RN"/>	-->												
+   </combobox>
+   <label value="Settlement Point" style="font-size: small"/>
+   <combobox id="settlementPointsCombobox" 
+             width="120px" 
+             autodrop="true" 
+             readonly="true" 
+             model="@{lmpBox.settlementPoints}">
+    <comboitem self="@{each='item'}" value="@{item}" label="@{item.name}"/> 
+   </combobox>
+  </hbox>  
+  <panel>
+   <panelchildren id="lmpPanel"/>
+  </panel>
+ </vbox>
+</zk>

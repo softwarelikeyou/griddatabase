@@ -1,0 +1,46 @@
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .help-signup {
+   margin-left: 30px;
+   padding-top: 80px; 
+  }
+  .help-label {
+   font: 12px Tahoma, Helvetica, sans-serif;
+   color: #0574b5;
+   text-decoration: none;
+  }
+  .help {
+   margin-left: 30px;
+   margin-top: 5px;
+  }
+ </style>
+ 
+  <hbox sclass="help-signup" align="center" spacing="5">
+   <button sclass="help-label" label="Signup" forward="onClick=onDownload()"/>
+  </hbox>
+  
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Forgot your user name?</a>
+  </hbox>
+  
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Forgot your password?</a>
+  </hbox>
+     
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Feedback or suggestions</a>
+  </hbox>
+        
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Report an issue</a>
+  </hbox>
+          
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Browser Requirements &amp; Other Helpful Tips</a>
+  </hbox>
+    
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Terms of Service</a>
+  </hbox>
+  
+</zk>

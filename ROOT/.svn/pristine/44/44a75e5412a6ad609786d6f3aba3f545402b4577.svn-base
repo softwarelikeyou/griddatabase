@@ -1,0 +1,61 @@
+<?page title="Grid Database" contentType="text/html;charset=UTF-8"?>
+<?page automaticTimeout="false"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .clear-both {clear: both;}
+  
+  .content-sep {height: 2px; 
+   background: #e8e8e8;
+   }
+ 
+   /* margin/padding: top right bottom left; */
+ 
+  .container {
+   height 768px;
+   width: 1024px;
+   margin: auto;
+   padding: auto
+  }
+  .center {
+   height: 530px;
+   width: 1024px;
+   margin: auto auto auto auto;
+   padding: 0px 0px 0px 0px; 
+   font-family: Tahoma, Helvetica, sans-serif;
+   font-size: 16px;
+  }
+ </style>
+ <div sclass="container">
+  
+  <include src="/header.zul"/>
+  
+  <div sclass="clear-both"/>
+  
+  <div sclass="center">
+    <html>
+     <![CDATA[
+     <br>
+     Grid Database provides ERCOT wholesale electricity price data files for download, daily reports of Ancillary Services and Settlement Point Prices, real-time forecast charts of Locational Marginal Prices, and custom software development.
+     <br>
+     <br>
+     Founded in 2010 by Steve Thomas with the help of a few energy consultants and investors. 
+	 <br>
+	 <br>
+     Since ERCOT does not easily provide historical wholesale price data and the competition charges excessive rents, this site was created. Though, anyone can request this data from ERCOT, but it may take several days or weeks.
+     <br>
+     <br>
+     Grid Database, a “Freemium” business model aims to provide public ERCOT data for free and charge (Coming Soon!) a fair premium for secured data and complex reporting.
+	 <br>
+	 <br>
+     Custom software can also be requested, just contact Steve at <a href="mailto:Steve.Thomas@griddatabase.com?subject=Information Request" style="text-decoration: none;">Steve.Thomas@griddatabase.com</a> or (713) 444-3489.
+     ]]>
+    </html>
+  
+  </div>
+  
+  <div sclass="clear-both"/>
+ 
+  <include src="/footer.zul" />
+  
+ </div>
+</zk>

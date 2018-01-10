@@ -1,0 +1,402 @@
+<?page title="Grid Database" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .clear-both {
+   clear: both;
+  }
+  .container {
+   height: 1100px;
+   width: 1024px;
+   margin: auto;
+   padding: 0px 0px 0px 0px; 
+  }
+  .center {
+   height: 825px;
+   width: 1024px;
+   margin: auto;
+   padding: 0px 0px 0px 0px;
+   overflow: scroll;
+  }
+    
+  /* margin/padding: top right bottom left; */
+  
+ </style>
+ 
+ <div sclass="container">
+  
+  <include src="/header.zul"/>
+    
+  <div sclass="clear-both"/>
+  
+  <div sclass="center" id="downloadDiv" use="com.griddatabase.viewcontroller.ercot.DownloadDiv">
+   <grid>
+    <columns sizable="false">
+     <column label="Name"/>
+     <column label="" width="120px"/>
+    </columns>
+    <rows>
+   
+    <group label="DAM Clearing Prices for Capacity" />
+    <row>
+     <label value="2004 to 2010" style="padding-left:15px"/>
+     <button id="ascpc200412010" label="Download">
+      <!--
+      <attribute name="onClick">
+      {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/ascpc2004-2010.zip", false)), null);
+      }
+      </attribute>
+      -->
+     </button>
+    </row>
+    <row>
+     <label value="2011" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/ascpc2011.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2012" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/ascpc2012.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2013 to Present" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/ascpc2013.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+   
+   <group label="DAM Settlement Point Prices" />
+    <row>
+     <label value="2011" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtdam2011.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2012" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtdam2012.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2013 to Present" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtdam2013.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    
+    <group label="Settlement Point Prices at Resource Nodes, Hubs and Load Zones" />
+    <row>
+     <label value="2011" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtspp2011.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2012" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtspp2012.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2013 to Present" style="padding-left:15px"/>
+     <button label="Download">
+       <attribute name="onClick">
+       {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtspp2013.zip", false)), null);
+       }
+       </attribute>
+     </button>
+    </row>
+ 
+   
+    <group label="LMPs by Resource Nodes, Load Zones and Trading Hubs" />
+    <row>
+     <label value="2011" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtlmp2011.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2012" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtlmp2012.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2013 to Present" style="padding-left:15px"/>
+     <button label="Download">
+       <attribute name="onClick">
+       {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/rtlmp2013.zip", false)), null);
+       }
+       </attribute>
+     </button>
+    </row>
+ 
+    <group label="48-Hour Highest Price AS Offer Selected" />
+    <row>
+     <label value="2011" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/h48damhp2011.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2012" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/h48damhp2012.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2013 to Present" style="padding-left:15px"/>
+     <button label="Download">
+       <attribute name="onClick">
+       {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/h48damhp2013.zip", false)), null);
+       }
+       </attribute>
+     </button>
+    </row>
+         
+    <group label="48 Hour Ancillary Services Reports" />
+    <row>
+     <label value="2011" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/h48damas2011.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2012" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/h48damas2012.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2013 to Present" style="padding-left:15px"/>
+     <button label="Download">
+       <attribute name="onClick">
+       {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/h48damas2013.zip", false)), null);
+       }
+       </attribute>
+     </button>
+    </row>
+
+    <group label="Settlement Point Hourly Temperatures" />
+    <row>
+     <label value="2011" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/spt2011.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2012" style="padding-left:15px"/>
+     <button label="Download">
+      <attribute name="onClick">
+      {
+          final Execution exec = Executions.getCurrent();
+          org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/spt2012.zip", false)), null);
+      }
+      </attribute>
+     </button>
+    </row>
+    <row>
+     <label value="2013 to Present" style="padding-left:15px"/>
+     <button label="Download">
+       <attribute name="onClick">
+       {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/spt2013.zip", false)), null);
+       }
+       </attribute>
+     </button>
+    </row>
+    
+   <group label="Henry Hub Natural Gas Daily Prices" />
+    <row>
+     <label value="1997 to Present" style="padding-left:15px"/>
+     <button label="Download">
+       <attribute name="onClick">
+       {
+         final Execution exec = Executions.getCurrent();
+         org.zkoss.zul.Filedownload.save(new java.io.File(exec.toAbsoluteURI("/home/ercot/public/henryhub.zip", false)), null);
+       }
+       </attribute>
+     </button>
+    </row>
+    
+    <group label="Ancillary Services Daily Reports" />
+    <row>
+     <cell>
+      <label sclass="label" value="Start Date"/>
+      <space spacing="3"/>
+      <datebox id="startDateboxASCPC" 
+	           format="MM/dd/yyyy kk:mm:ss"
+	           timeZone="GMT-6" 
+	           timeZonesReadonly="false"
+	           constraint="after 20031231"
+	           cols="20" 
+	           mold="rounded" 
+	           style="white-space: normal;">
+	   <attribute name="onCreate">
+          java.util.Calendar calendar = java.util.Calendar.getInstance();
+          calendar.set(java.util.Calendar.YEAR, 2004);
+          calendar.set(java.util.Calendar.MONTH, 0);
+          calendar.set(java.util.Calendar.DAY_OF_MONTH, 1);
+          calendar.set(java.util.Calendar.HOUR, 0);
+          calendar.set(java.util.Calendar.MINUTE, 0);
+          calendar.set(java.util.Calendar.SECOND, 0);
+          startDateboxASCPC.setValue(calendar.getTime());
+       </attribute>
+      </datebox>
+	  <space spacing="3"/>
+      <label sclass="label" value="End Date"/>
+      <space spacing="3"/>
+      <datebox id="endDateboxASCPC" 
+	           format="MM/dd/yyyy kk:mm:ss"
+	           onCreate="self.value = new Date(System.currentTimeMillis())"
+	           timeZone="GMT-6" 
+	           timeZonesReadonly="false"
+	           constraint="no empty, no future: now or never" 
+	           cols="20" 
+	           mold="rounded" 
+	           style="white-space: normal;"/>
+     </cell>
+     <button id="downloadASCPC" label="Download"/>
+	</row>
+         
+    <group label="Settlement Point Price Daily Reports, Load Zones, Hubs" />
+    <row>
+     <cell>
+      <label sclass="label" value="Start Date"/>
+      <space spacing="3"/>
+      <datebox id="startDateboxRTSPP" 
+	           format="MM/dd/yyyy kk:mm:ss"
+	           timeZone="GMT-6" 
+	           timeZonesReadonly="false"
+	           constraint="after 20101231"
+	           cols="20" 
+	           mold="rounded" 
+	           style="white-space: normal;">
+	   <attribute name="onCreate">
+          java.util.Calendar calendar = java.util.Calendar.getInstance();
+          calendar.set(java.util.Calendar.YEAR, 2011);
+          calendar.set(java.util.Calendar.MONTH, 0);
+          calendar.set(java.util.Calendar.DAY_OF_MONTH, 1);
+          calendar.set(java.util.Calendar.HOUR, 0);
+          calendar.set(java.util.Calendar.MINUTE, 0);
+          calendar.set(java.util.Calendar.SECOND, 0);
+          startDateboxRTSPP.setValue(calendar.getTime());
+       </attribute>
+      </datebox>
+	  <space spacing="3"/>
+      <label sclass="label" value="End Date"/>
+      <space spacing="3"/>
+      <datebox id="endDateboxRTSPP" 
+	           format="MM/dd/yyyy kk:mm:ss"
+	           onCreate="self.value = new Date(System.currentTimeMillis())"
+	           timeZone="GMT-6" 
+	           timeZonesReadonly="false"
+	           constraint="no empty, no future: now or never" 
+	           cols="20" 
+	           mold="rounded" 
+	           style="white-space: normal;"/>
+     </cell>
+     <button id="downloadRTSPP" label="Download"/>
+	</row>
+	
+   </rows>
+  </grid>
+  </div>
+  
+  <div sclass="clear-both"/>
+  
+  <include src="/footer.zul"/>
+ 
+ </div>
+</zk>

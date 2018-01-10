@@ -1,0 +1,40 @@
+<?page title="Grid Database - Portal" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .clear-both {
+   clear: both;
+  }
+  .content-sep {height: 2px; 
+   background: #e8e8e8;
+  } 
+  .container {
+   height 768px;
+   width: 1024px;
+   margin: auto;
+   padding: auto;
+  }
+  .center {
+   height: 530px;
+   width: 1024px;
+   margin: 20px auto auto auto;
+   padding: auto;
+  }
+ </style>
+ <div sclass="container">
+  
+  <include src="/header.zul"/>
+    
+  <div sclass="clear-both"/>
+  
+  <div sclass="center">
+   <include src="/Portal/User/center.zul"/>
+  </div>
+  
+  <div sclass="clear-both"/>
+  
+  <include src="/footer.zul"/>
+ 
+ </div>
+</zk>

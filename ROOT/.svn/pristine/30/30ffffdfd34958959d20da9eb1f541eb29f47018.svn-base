@@ -1,0 +1,20 @@
+log4j.appender.LOGFILE=org.apache.log4j.RollingFileAppender
+log4j.appender.LOGFILE.File=${catalina.home}/logs/ercot.log
+log4j.appender.LOGFILE.Append=true
+log4j.appender.LOGFILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.LOGFILE.layout.ConversionPattern=%d{dd MMM yyyy HH:mm:ss} [%t] %-5p %c %x - %m%n
+log4j.appender.LOGFILE.MaxFileSize=1000KB
+log4j.appender.LOGFILE.MaxBackupIndex=10
+log4j.rootLogger = INFO, LOGFILE
+
+log4j.logger.org.hibernate=ERROR, LOGFILE
+log4j.additivity.org.hibernate=false
+log4j.logger.org.apache=ERROR, LOGFILE
+log4j.additivity.org.apache=false
+log4j.logger.org.springframework=ERROR, LOGFILE
+log4j.additivity.org.springframework=false
+log5j.logger.com.sun=ERROR, LOGFILE
+log4j.additivity.com.sun=false
+
+log4j.additivity.com.griddatabase=false
+

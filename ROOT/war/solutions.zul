@@ -1,0 +1,55 @@
+<?page title="Grid Database - Solutions" contentType="text/html;charset=UTF-8"?>
+<?page automaticTimeout="false"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .clear-both {clear: both;}
+  
+  .content-sep {height: 2px; 
+   background: #e8e8e8;
+   }
+ 
+   /* margin/padding: top right bottom left; */
+ 
+  .container {
+   height 768px;
+   width: 1024px;
+   margin: auto;
+   padding: auto
+   /*border-width: 1px; */
+   /*border-style: solid; */ 
+   /*border-color: #A9A9A9; */
+  }
+  .center {
+   height: 530px;
+   width: 1024px;
+   margin: auto auto auto auto;
+   padding: 0px 0px 0px 0px; 
+   font-family: Tahoma, Helvetica, sans-serif;
+   font-size: 16px;
+   /*border-width: 1px; */
+   /*border-style: solid; */ 
+   /*border-color: #A9A9A9; */
+  }
+ </style>
+ <div sclass="container">
+  
+  <include src="/header.zul"/>
+  
+  <div sclass="clear-both"/>
+  
+  <div sclass="center">
+    <html>
+     <![CDATA[
+     <br>
+     THIS PAGE IS UNDER CONSTRUCTION !!!&nbsp;&nbsp; PLEASE CHECK LATER...     
+     ]]>
+    </html>
+  
+  </div>
+  
+  <div sclass="clear-both"/>
+ 
+  <include src="/footer.zul" />
+  
+ </div>
+</zk>

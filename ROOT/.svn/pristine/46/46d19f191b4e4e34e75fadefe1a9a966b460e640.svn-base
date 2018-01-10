@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <window id="editWindow" 
+         border="none" 
+	     width="40%"
+	     height="35%"
+	     closable="true" 
+	     sizable="false" 
+	     maximizable="false" 
+	     minimizable="false"
+	     style="background-color: #0574b5"
+	     apply="com.griddatabase.viewcontroller.user.Controller"
+	     use="com.griddatabase.viewcontroller.user.EditWindow">
+  <caption label="Edit profile for user ${gdb:getCurrentUsername()}"/>
+  <separator height="0px"/>
+  <groupbox mold="3d" id="nameGroupbox">
+   <caption label="Credentials"/>	
+   <grid fixedLayout="true">
+	<columns>
+	 <column width="150px"/>
+	 <column/>
+	</columns>
+	<rows>
+	 <row>
+	  <label value="Display Name" style="vertical-align: middle"/>
+	  <textbox id="display" 
+	           constraint="${c:new('com.griddatabase.viewcontroller.user.NameConstraint')}"
+			   width="220px"
+			   value="${gdb:getCurrentDisplayName()}"/>
+	 </row>
+     <row>
+	  <label value="Password" style="vertical-align: middle"/>
+	  <textbox type="password" id="password" width="220px"/>
+	 </row>
+	 <row>
+	  <label value="Confirm password" style="vertical-align: middle"/>				
+	  <textbox type="password" 
+		       id="confirmPassword" 
+		       constraint="${c:new('com.griddatabase.viewcontroller.user.PasswordConstraint')}"
+		       width="220px"/>
+	 </row>	
+	</rows>
+   </grid>
+  </groupbox>		    
+  <div width="95%" style="margin: 5px; text-align: right;">		
+   <button  label="Save" id="saveButton" forward="onEdit"/>
+   <button label="Cancel" id="cancelButton"/>
+  </div>
+ </window>
+</zk>

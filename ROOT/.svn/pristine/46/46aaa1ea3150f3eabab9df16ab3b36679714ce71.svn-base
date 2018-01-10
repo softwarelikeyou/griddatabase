@@ -1,0 +1,35 @@
+hibernate.connection.driver_class=com.mysql.jdbc.Driver
+hibernate.connection.url=jdbc:mysql://192.168.0.203/ercot
+hibernate.connection.username=root
+hibernate.connection.password=dinky01
+hibernate.dialect = org.hibernate.dialect.MySQLDialect
+hibernate.hbm2ddl.auto=validate
+hibernate.show_sql=false
+
+weather.scheduler.instance.name = Weather
+weather.scheduler.instance.id = 1
+weather.scheduler.thread.count = 3
+weather.scheduler.start=true
+weather.noaa.key=xrtHQrXKLbKeqHDvmXpmSWMdHpCtAPHG
+weather.weatherbug.geo.key=dy9m3x37dy9n7qd3aatvchcn
+weather.weatherbug.restful.key=35v8bv3m64ct7brfdypytugy
+weather.ncdc.key=gjjEcbEjDMKMTpnnoLr
+
+email.password=dinky01
+email.account=Steve.Thomas@softwarelikeyou.com
+email.default.recipients=Steve.Thomas@softwarelikeyou.com
+email.server=imap.emailsrvr.com
+
+default-page-auto-refresh=3600
+
+google.maps.api.key=ABQIAAAA8iDTWvaIvrSsvQCgQkwU1BRAYUORo7RXi36va5NPIpetqewXCxRDiGLvFJ52VOPIjQq9zy6eho-XMQ
+other.google.maps.api.key=ABQIAAAA8iDTWvaIvrSsvQCgQkwU1BQ7KTwq10rE5Xu-qQMtdK_MxAAWKBT_b3S8zGMcQW0R2XRnGT2YsrA8XQ
+
+lmp.watch.dir=/home/ercot/data/rtlmp
+#lmp.watch.dir=/Users/steve/data/rtlmp
+
+spp.watch.dir=/home/ercot/data/rtspp
+#spp.watch.dir=/Users/steve/data/rtspp
+
+ascpc.watch.dir=/home/ercot/data/ascpc
+#ascpc.watch.dir=/Users/steve/data/ascpc

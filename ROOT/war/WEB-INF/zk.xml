@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+
+ <listener>
+  <description>ThreadLocal Synchronization Listener</description>
+  <listener-class>org.zkoss.zkplus.util.ThreadLocalListener</listener-class>
+ </listener>
+ 
+ <listener>
+  <description>Global Event Updater</description>
+  <listener-class>com.griddatabase.viewcontroller.GlobalUpdater</listener-class>
+ </listener>
+ 
+ <device-config>
+  <device-type>ajax</device-type>
+  <timeout-uri>/index.zul</timeout-uri>
+ </device-config>
+ 
+ <preference>
+  <name>ThreadLocal</name>
+  <value>org.springframework.security.core.context.ThreadLocalSecurityContextHolderStrategy=contextHolder</value>
+ </preference>
+ 
+ <language-config>
+  <addon-uri>/WEB-INF/classes/metainfo/zk/lang-addon.xml</addon-uri>
+ </language-config>
+ 
+ <desktop-config>
+  <desktop-timeout>1800</desktop-timeout>
+ </desktop-config>
+	
+ <session-config>
+  <device-type>ajax</device-type>
+  <session-timeout>1800</session-timeout>
+  <timeout-uri>/Portal/portal.zul</timeout-uri>
+  <timer-keep-alive>true</timer-keep-alive>
+  <automatic-timeout/>
+ </session-config>	
+ <session-config>
+  <session-timeout>1800</session-timeout>
+  <timeout-uri>/Portal/portal.zul</timeout-uri>
+  <timer-keep-alive>true</timer-keep-alive>
+  <automatic-timeout/>
+ </session-config>
+	
+ <library-property>
+  <name>org.zkoss.zul.progressbox.position</name>
+  <value>center</value>
+ </library-property>
+ 
+  <library-property>
+  <name>org.zkoss.zkmax.ui.comet.async.disabled</name>
+  <value>true</value>
+ </library-property>
+ 
+</zk>

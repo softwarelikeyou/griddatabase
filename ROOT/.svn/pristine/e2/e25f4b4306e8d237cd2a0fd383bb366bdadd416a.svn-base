@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./signupWindow"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <window id="signupWindow" 
+	      border="normal"
+	      width="40%"
+	      height="40%"
+	      closable="true" 
+	      sizable="false" 
+	      maximizable="false" 
+	      minimizable="false"
+	      style="background-color: #0574b5"
+	      apply="com.griddatabase.viewcontroller.user.Controller"
+	      use="com.griddatabase.viewcontroller.user.SignupWindow">
+  <caption label="Signup"/>
+	<groupbox mold="3d">
+	 <grid fixedLayout="true">
+	  <columns>
+		<column width="35%"/>
+		<column width="65%"/>
+	  </columns>
+	  <rows>
+	  	<row>
+		 <label value="Company"/>				
+		 <textbox id="company" 
+		          width="280px"
+		          constraint="${c:new('com.griddatabase.viewcontroller.user.CompanyConstraint')}"/>
+		</row>
+		<row>
+		 <label value="Email Address"/>							
+		 <textbox id="username" 
+		          width="280px"
+		          constraint="${c:new('com.griddatabase.viewcontroller.user.EmailAddressConstraint')}"/>
+		</row>
+		<row>
+		 <label value="Name"/>							
+		 <textbox id="display" 
+		          width="280px"
+				  constraint="${c:new('com.griddatabase.viewcontroller.user.NameConstraint')}"/>
+		</row>	
+      <row>
+		 <label value="Password"/>							
+		 <textbox type="password" 
+		          id="password" 
+		          width="280px"/>
+		</row>
+		<row>
+		 <label value="Confirm Password"/>							
+		 <textbox type="password" 
+		          id="confirmPassword" 
+		          constraint="${c:new('com.griddatabase.viewcontroller.user.PasswordConstraint')}"
+		          width="280px"/>
+		</row>
+        <row visible="false">
+         <label value="Validation"/>	
+         <textbox id="captchaTextbox" width="280px"/>
+        </row>
+        <row visible="false">
+         <label value="Type characters in Validation textbox above" style="color: #0574b5;"/>	
+         <captcha value="@{signupWindow.captcha}" width="120px" height="30px" frame="true" />
+        </row>			
+	  </rows>
+	 </grid>	
+	</groupbox>
+	<div width="95%" 
+	     style="margin: 5px; text-align: right;">		
+	 <button label="Create" 
+			   id="createButton" 
+			   forward="onSignup"/>
+	 <button label="Cancel" 
+			   id="cancelButton"/>
+  </div>
+ </window>
+</zk>

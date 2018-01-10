@@ -1,0 +1,34 @@
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <tabbox use="com.griddatabase.viewcontroller.freemium.ercot.ReportsTabbox"
+         hflex="true" 
+         vflex="true">
+  <tabs>
+   <tab id="HB_HOUSTON" label="HB HOUSTON" />
+   <tab id="HB_NORTH" label="HB_NORTH" />
+   <tab id="HB_SOUTH" label="HB_SOUTH" />
+   <tab id="HB_WEST" label="HB_WEST" />
+   <tab id="LZ_HOUSTON" label="LZ_HOUSTON" />
+   <tab id="LZ_NORTH" label="LZ_NORTH" />
+   <tab id="LZ_SOUTH" label="LZ_SOUTH" />
+   <tab id="LZ_WEST" label="LZ_WEST" />
+   <tab id="NSPIN" label="NSPIN" />
+   <tab id="REGUP" label="REGUP" />
+   <tab id="REGDN" label="REGDN" />
+   <tab id="RRS" label="RRS" />
+  </tabs>
+  <tabpanels>
+   <tabpanel id="HB_HOUSTONPanel"/>
+   <tabpanel id="HB_NORTHPanel"/>
+   <tabpanel id="HB_SOUTHPanel"/>
+   <tabpanel id="HB_WESTPanel"/>
+   <tabpanel id="LZ_HOUSTONPanel"/>
+   <tabpanel id="LZ_NORTHPanel"/>
+   <tabpanel id="LZ_SOUTHPanel"/>
+   <tabpanel id="LZ_WESTPanel"/>
+   <tabpanel id="NSPINPanel"/>
+   <tabpanel id="REGUPPanel"/>
+   <tabpanel id="REGDNPanel"/>
+   <tabpanel id="RRSPanel"/>
+  </tabpanels>
+ </tabbox>
+</zk>

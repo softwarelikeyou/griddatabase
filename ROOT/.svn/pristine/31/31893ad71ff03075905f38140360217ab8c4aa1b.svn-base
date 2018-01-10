@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./sppDetailBox"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <div id="sppDetailBox" 
+      style="overflow:auto;"
+      width="100%"
+      height="100%"
+	  use="com.griddatabase.viewcontroller.ercot.rtspp.SPPDetailBox">
+  <listbox id="listBox"
+           height="700px"
+           width="1000px"
+	       mold="paging" 
+		   model="@{sppDetailBox.model}"
+		   fixedLayout="true"
+		   paginal="@{listPager}">
+   <listhead>
+    <listheader label="Interval Date"/>	
+    <listheader label="Settlement Point"/>	
+    <listheader label="Type"/>	
+    <listheader label="Price"/>
+   </listhead>
+   <listitem self="@{each='item'}" value="@{item}">
+    <listcell label="@{item.intervalDate}"/>
+    <listcell label="@{item.settlementPointName}"/>
+    <listcell label="@{item.settlementPointType}"/>
+    <listcell label="@{item.settlementPointPrice, converter='com.griddatabase.viewcontroller.converter.FloatPrecisionConverter'}"/>
+   </listitem>
+   <listfoot>
+    <listfooter span="4" align="center">
+	 <paging id="listPager" 
+	         pageSize="@{listPager.pageSize}" 
+	         mold="default" 
+	         visible="true" 
+	         totalSize="@{listBox.itemCount}"/>	
+    </listfooter>
+   </listfoot>	
+  </listbox>
+ </div>
+</zk>

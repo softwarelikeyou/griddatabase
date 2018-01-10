@@ -1,0 +1,5 @@
+<language-addon>
+ <addon-name>gdb</addon-name>
+ <language-name>xul/html</language-name>
+ <stylesheet href="/css/gdb-main.css.dsp" type="text/css" />
+</language-addon>

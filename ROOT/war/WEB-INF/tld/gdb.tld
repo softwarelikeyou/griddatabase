@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib>
+    
+    <description>A taglib to define some EL accessible functions.</description>
+    <short-name>gdbtaglib</short-name>
+    <uri>http://www.griddatabase.com/</uri>  
+    
+    <function>
+    	<description>Returns a boolean indicating whether or not the user is logged in.</description>
+    	<name>isLoggedIn</name>
+    	<function-class>com.griddatabase.util.SessionUtil</function-class>
+    	<function-signature>java.lang.Boolean isLoggedIn()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns the username of the current user, or an empty string if there is no current user</description>
+    	<name>getCurrentUsername</name>
+    	<function-class>com.griddatabase.util.SessionUtil</function-class>
+    	<function-signature>java.lang.String getCurrentUsername()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns the display name of the current user, or an empty string if there is no current user</description>
+    	<name>getCurrentDisplayName</name>
+    	<function-class>com.griddatabase.util.SessionUtil</function-class>
+    	<function-signature>java.lang.String getCurrentDisplayName()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns a boolean indicating whether or not the current user is a administrator.</description>
+    	<name>isAdministrator</name>
+    	<function-class>com.griddatabase.util.SessionUtil</function-class>
+    	<function-signature>java.lang.Boolean isAdministrator()</function-signature>
+    </function>
+    
+    <function>
+    	<description>Returns a boolean indicating whether or not the current user is a premium user.</description>
+    	<name>isPremium</name>
+    	<function-class>com.griddatabase.util.SessionUtil</function-class>
+    	<function-signature>java.lang.Boolean isPremium()</function-signature>
+    </function>
+           
+    <function>
+    	<description>Returns a boolean indicating whether or not the current user is a freeemium user.</description>
+    	<name>isFreemium</name>
+    	<function-class>com.griddatabase.util.SessionUtil</function-class>
+    	<function-signature>java.lang.Boolean isFreemium()</function-signature>
+    </function>	
+    
+</taglib>

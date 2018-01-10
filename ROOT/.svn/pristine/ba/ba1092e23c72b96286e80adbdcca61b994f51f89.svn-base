@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./rssWindow"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+<window id="rssWindow"  
+        use="com.griddatabase.viewcontroller.freemium.ercot.RSSWindow"
+        apply="org.zkoss.bind.BindComposer"
+        width="100%" 
+        height="500px">
+ <borderlayout width="100%" 
+               height="100%">
+  <west width="200px" 
+        collapsible="true" 
+        title="Subscription Title">
+   <div>
+    <listbox id="newsListBox" 
+             height="430px" 
+             model="@{rssWindow.selectedFeed.feedEntries}" 
+             width="100%"
+             selectedItem="@{rssWindow.selectedEntry}">
+     <listitem self="@{each='item'}" value="@{item}">
+      <listcell label="@{item.title}"/>
+     </listitem>
+    </listbox>
+   </div>
+  </west>
+  <center>
+   <groupbox hflex="1" 
+             vflex="1" 
+             closable="false" 
+             mold="3d">
+    <caption label="@{rssWindow.selectedEntry.title}">
+     <div width="70px">
+      <a sclass="link" 
+         href="@{rssWindow.selectedEntry.link}" 
+         target="_zkdemo">
+       Full Article
+      </a>
+     </div>
+    </caption>
+    <div hflex="1" 
+         vflex="1" 
+         style="overflow:auto">
+     <html class="desc" 
+           content="@{rssWindow.selectedEntry.descValue}"/>
+    </div>
+   </groupbox>
+  </center>
+ </borderlayout>
+</window>
+</zk>

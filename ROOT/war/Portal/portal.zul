@@ -1,0 +1,46 @@
+<?page title="Grid Database" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .clear-both {
+   clear: both;
+  }
+  .content-sep {height: 2px; 
+   background: #e8e8e8;
+  } 
+  .container {
+   height: 1100px;
+   width: 1024px;
+   margin: auto;
+   padding: 0px 0px 0px 0px; 
+  }
+  .center {
+   height: 825px;
+   width: 1024px;
+   margin: auto;
+   padding: 0px 0px 0px 0px;
+   overflow: scroll;
+  }
+    
+    
+  /* margin/padding: top right bottom left; */
+  
+ </style>
+ <div sclass="container">
+  
+  <include src="/header.zul"/>
+    
+  <div sclass="clear-both"/>
+  
+  <div sclass="center">
+   <include visible="${!gdb:isLoggedIn()}" src="/Portal/login-center.zul"/>
+   <include visible="${gdb:isLoggedIn()}" src="/center-downloads.zul"/>
+  </div>
+  
+  <div sclass="clear-both"/>
+  
+  <include src="/footer.zul"/>
+ 
+ </div>
+</zk>

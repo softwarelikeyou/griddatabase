@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./sppChartBox"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <div id="sppChartBox" 
+	  use="com.griddatabase.viewcontroller.ercot.rtspp.SPPChartBox">
+  <image id="image"/>
+ </div>
+</zk>

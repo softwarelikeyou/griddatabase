@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./sppBox"?>
+<zk>
+ <style>
+ .sppBox {
+  margin-left: auto;
+  margin-right: auto; 
+ }
+ </style>
+ <vbox id="sppBox" use="com.griddatabase.viewcontroller.ercot.rtspp.SPPBox" align="center" sclass="sppBox">
+  <hbox align="center">
+   <combobox id="displayCombobox" width="70px" autodrop="true" readonly="true">
+    <comboitem value="Chart" label="Chart"/>	
+    <comboitem value="Table" label="Table"/>								
+   </combobox>
+   <label value="Type" style="font-size: small"/>
+   <combobox id="typeCombobox" width="90px" autodrop="true" readonly="true">
+    <comboitem value="HU" label="Hub"/>	
+    <!-- <comboitem value="LCCRN" label="LCCRN"/> -->
+    <comboitem value="LZ" label="Load Zone"/>								
+    <!-- <comboitem value="LZDC" label="LZDC"/>	-->							
+    <!-- <comboitem value="PCCRN" label="PCCRN"/> -->							
+    <!-- <comboitem value="PUN" label="PUN"/> -->						
+    <!-- <comboitem value="RN" label="RN"/>	-->												
+   </combobox>
+  </hbox>  
+  <panel>
+   <panelchildren id="sppPanel"/>
+  </panel>
+ </vbox>
+</zk>

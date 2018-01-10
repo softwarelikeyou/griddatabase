@@ -1,0 +1,76 @@
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .west {
+   height: 530px;
+   width: 80px;
+   margin: auto;
+   padding: auto;
+   display: inline-block;
+   float: left;
+   border-width: 1px; 
+   border-style: solid;  
+   border-color: #E8E8E8; 
+   border-top-color: white; 
+   border-left-color: white; 
+   border-bottom-color: white; 
+  }
+  .west-north {
+   height: 235px;
+   width: 80px;
+   margin: auto;
+   padding: auto;
+   display: inline-block;
+  }
+  .west-south {
+   height: 240px;
+   width: 80px;
+   margin: auto;
+   padding: auto; 
+   display: inline-block;
+  }
+  .east {
+   height: 530px;
+   width: 775px;
+   margin: auto auto auto 5px;
+   padding: auto;
+   display: inline-block;
+  }
+  .sidebar {
+   height: 240px;
+   width: 80px;
+   margin: auto;
+   padding: auto;
+  }
+  .sidebar-button {
+   width: 75px;
+   height: 25px; 
+   font-weight: bold; 
+   font-size: 11px;
+   text-align: center;
+  }
+  .sidebar button:hover {
+   color: black;
+   background-color: darkgray;
+   border-style: outset;
+   cursor: hand; 
+   cursor: pointer;
+  } 
+ </style>
+  
+ <div sclass="west">   
+  <div sclass="west-north">
+   <vbox sclass="sidebar" pack="start">
+    <button sclass="sidebar-button" label="Dashboard" href="/index.zul"/>
+    <button sclass="sidebar-button" label="User" href="/Portal/User"/>
+   </vbox> 
+  </div>
+  
+  <div sclass="west-south"/>
+ </div>
+ 
+ <div id="east" sclass="east">
+  <include visible="${gdb:isLoggedIn()}" src="/Portal/User/user-list.zul"/>
+  <include visible="${!gdb:isLoggedIn()}" src="/Portal/login-center.zul"/>
+ </div>
+</zk>

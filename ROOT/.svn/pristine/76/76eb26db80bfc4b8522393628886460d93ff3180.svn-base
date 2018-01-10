@@ -1,0 +1,118 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./downloadDiv"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+ .downloadcenter {
+  height: 528px;
+  width: 924px;
+  margin: auto;
+  padding: auto; 
+ }
+ .downloadleft {
+  height: 500px;
+  width: 300px;
+  margin: 0px 0px 0px 10px;
+  padding: auto;
+  display: inline-block;
+ }
+ .downloadright {
+  height: 500px;
+  width: 500px;
+  margin: 0px 0px 0px 10px;
+  padding: auto;
+  display: inline-block;
+  font-size: 16px; 
+  font-family: Tahoma, Helvetica, sans-serif;"
+ }
+ .label {
+  font-weight: bold; 
+  font-size: 13px; 
+  font-family: Tahoma, Helvetica, sans-serif;"
+ }
+ .button {
+  width: 75px;
+  height: 25px;
+  margin: auto;
+  font-weight: bold; 
+  font-size: 13px;
+  font-family: Tahoma, Helvetica, sans-serif;
+ }
+ .button:hover {
+  color: black;
+  background-color: darkgray;
+  border-style: outset;
+  cursor: hand; 
+  cursor: pointer;
+ }
+ </style>
+ <div id="downloadDiv" sclass="downloadcenter" use="com.griddatabase.viewcontroller.ercot.DownloadDiv">
+  <div sclass="downloadleft">
+   <radiogroup id="type"/>
+   <vbox spacing="10px">
+   <listbox width="280px">
+    <listhead visible="false">
+     <listheader width="10%"></listheader>
+     <listheader></listheader>
+    </listhead>
+    <listitem>
+     <listcell><radio id="dailyascpc" value="dailyascpc" radiogroup="type" selected="true"/></listcell>
+     <listcell><label value="Daily Ancillary Services Report" sclass="label"/></listcell>
+    </listitem>
+    <listitem>
+     <listcell><radio id="ascpc" value="ascpc" radiogroup="type"/></listcell>
+     <listcell><label value="Ancillary Services" sclass="label"/></listcell>
+    </listitem>
+    <listitem>
+     <listcell><radio id="dailyrtspp" value="dailyrtspp" radiogroup="type"/></listcell>
+     <listcell><label value="Daily Settlement Point Prices Report" sclass="label"/></listcell>
+    </listitem>
+    <listitem>
+     <listcell><radio id="rtspp" value="rtspp" radiogroup="type"/></listcell>
+     <listcell><label value="Settlement Point Prices" sclass="label"/></listcell>
+    </listitem>
+   </listbox>
+   <grid width="280px" zclass="nothing">
+    <columns visible="false">
+     <column width="30%"></column>
+     <column></column>
+    </columns>
+    <rows>
+     <row>
+      <label sclass="label" value="Start Date"/>
+      <datebox id="startDatebox" 
+	           format="MM/dd/yyyy kk:mm:ss"
+	           timeZone="GMT-6" 
+	           timeZonesReadonly="false"
+	           onCreate="self.value = new Date(System.currentTimeMillis()-(long) 1000.0 * 60 * 60 * 24)"
+	           constraint="after 20121101"
+	           cols="20" 
+	           mold="rounded" 
+	           style="white-space: normal;"/>
+     </row>
+     <row>
+      <label sclass="label" value="End Date"/>
+      <datebox id="endDatebox" 
+	           format="MM/dd/yyyy kk:mm:ss"
+	           onCreate="self.value = new Date(System.currentTimeMillis())"
+	           timeZone="GMT-6" 
+	           timeZonesReadonly="false"
+	           constraint="no empty, no future: now or never" 
+	           cols="20" 
+	           mold="rounded" 
+	           style="white-space: normal;"/>
+     </row>
+     <row>
+      <label/>
+      <button id="download" label="Save" sclass="button"/>
+     </row>
+    </rows>
+   </grid>
+   </vbox>
+  </div>
+  <div sclass="downloadright">
+   <vbox spacing="10px">
+   <html id="downloadright" content=""/>
+   </vbox>
+  </div>
+ </div>
+
+</zk>

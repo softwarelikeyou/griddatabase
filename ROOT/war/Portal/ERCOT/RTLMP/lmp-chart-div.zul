@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./lmpChartDiv"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <div id="lmpChartDiv" 
+	  use="com.griddatabase.viewcontroller.ercot.rtlmp.LMPChartDiv"
+	  apply="com.griddatabase.viewcontroller.ercot.rtlmp.LMPChartComposer">
+  <timer id="timer" 
+         delay="300000" 
+         repeats="true"/>
+  <chart id="lmpChart"
+         height="440px"
+         width="1000px">
+   <!--
+   <attribute name="onClick">
+    alert("Date:   " + event.areaComponent.getAttribute("date") + "\n" +
+          "Low:    " + event.areaComponent.getAttribute("low") + "\n" +
+          "High:   " + event.areaComponent.getAttribute("high") + "\n" +
+          "Volume: " + event.areaComponent.getAttribute("volume")
+          );
+   </attribute>
+   -->
+  </chart>
+ </div>
+</zk>

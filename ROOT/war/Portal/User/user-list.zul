@@ -1,0 +1,43 @@
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./usersListDiv"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <div id="usersListDiv"  
+      use="com.griddatabase.viewcontroller.user.ListDiv">
+  <listbox id="usersListbox" 
+           sclass="listbox" 
+           fixedLayout="true"
+           mold="paging" 
+           model="@{usersListDiv.usersModel}" 
+           paginal="@{listPager}">
+   <listhead sizable="true" id="userListHeader">
+    <listheader label="Enabled" width="90px" style="text-align: center"/>
+    <listheader label="User Name" sortDirection="ascending" style="text-align: center"/>
+    <listheader label="Type" style="text-align: center"/>
+    <listheader label="Display" style="text-align: center"/>				
+    <listheader label="Actions" width="80px" style="text-align: center"/>	
+   </listhead>
+   <listitem self="@{each='user'}" value="@{user}">
+    <listcell style="text-align: center">
+     <span>
+	  <image src="/images/enabled-16x16.png" visible="@{user.enabled}"/>
+      <image src="/images/disabled-16x16.png" visible="@{user.enabled, converter='com.griddatabase.viewcontroller.converter.BooleanReverseConverter'}"/>
+	 </span>
+    </listcell>
+    <listcell label="@{user.username}" style="text-align: center"/>
+    <listcell label="@{user, converter='com.griddatabase.viewcontroller.user.UserTypeConverter'}" style="text-align: center"/>
+    <listcell label="@{user.display}" style="text-align: center"/>			
+    <listcell style="text-align: center">
+	 <a image="/images/enabled-16x16.png" id="enableButton" visible="@{user.enabled, converter='com.griddatabase.viewcontroller.converter.BooleanReverseConverter'}"/>
+	 <a image="/images/disabled-16x16.png" id="disableButton" visible="@{user.enabled}"/>    
+     <a image="/images/restore-16x16.png" id="resetButton"/> 
+     <a image="/images/flashlight-16x16.png" id="typeChangeButton"/> 
+    </listcell>
+   </listitem>
+   <listfoot>
+    <listfooter span="5">
+	 <paging id="listPager" pageSize="@{listPager.pageSize}" mold="default" visible="true" totalSize="@{usersListbox.itemCount}"/>	
+    </listfooter>
+   </listfoot>	
+  </listbox> 
+ </div>
+</zk>

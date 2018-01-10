@@ -1,0 +1,152 @@
+<?page title="Grid Database - ERCOT" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <timer id="timerKeepAliveSession" repeats="true" delay="600000" onTimer=""/>
+ <style>
+  .clear-both {
+   clear: both;
+  }
+  .content-sep {height: 2px; 
+   background: #e8e8e8;
+  } 
+  .container {
+   height 768px;
+   width: 1024px;
+   margin: auto;
+   padding: auto;
+  }
+  .center {
+   height: 530px;
+   width: 1024px;
+   margin: auto auto auto auto;
+   padding: 0px 0px 0px 0px; 
+  }
+  .west {
+   height: 530px;
+   width: 80px;
+   margin: auto;
+   padding: auto; 
+   display: inline-block;
+   float: left;
+   border-width: 2px; 
+   border-style: solid;  
+   border-color: #E8E8E8; 
+   border-top-color: white; 
+   border-left-color: white; 
+   border-bottom-color: white; 
+  }
+  .west-north {
+   height: 235px;
+   width: 80px;
+   margin: auto;
+   padding: auto; 
+   display: inline-block;
+  }
+  .west-south {
+   height: 240px;
+   width: 80px;
+   margin: auto;
+   padding: auto; 
+   display: inline-block;
+  }
+  .east {
+   height: 530px;
+   width: 924px;
+   margin: auto;
+   padding: auto; 
+   display: inline-block;
+   overflow-x: visible;
+   overflow-y: hidden;
+  }  
+  .sidebar {
+   height: 240px;
+   width: 80px;
+   margin: auto;
+   padding: auto; 
+  }
+  .sidebar-button-dashboard {
+   width: 70px;
+   height: 25px; 
+   font-weight: bold; 
+   font-size: 11px;
+   text-align: center;
+  }
+  .sidebar-button {
+   width: 70px;
+   height: 25px; 
+   font-weight: bold; 
+   font-size: 11px;
+   margin-bottom: -5px;
+   text-align: center;
+  }
+  .sidebar button:hover {
+   color: black;
+   background-color: darkgray;
+   border-style: outset;
+   cursor: hand; 
+   cursor: pointer;
+  }
+  .menu {
+   height: 240px;
+   width: 80px;
+   margin: auto;
+   padding: auto; 
+  }
+  .menu-button-download {
+   width: 70px;
+   height: 25px; 
+   font-weight: bold; 
+   font-size: 11px;
+   text-align: center;
+  }
+  .menu-button {
+   width: 70px;
+   height: 25px; 
+   font-weight: bold; 
+   font-size: 11px;
+   margin: auto;
+   padding: auto; 
+   text-align: center;
+  }
+  .menu button:hover {
+   color: black;
+   background-color: darkgray;
+   border-style: outset;
+   cursor: hand; 
+   cursor: pointer;
+  }  
+ </style>
+ <div sclass="container" apply="com.griddatabase.viewcontroller.ercot.Controller">
+  
+  <include src="/header.zul"/>
+  
+  <div sclass="clear-both"/>
+  
+  <div sclass="center">
+   <div sclass="west" visible="${gdb:isLoggedIn()}">   
+    <div sclass="west-north">
+     <vbox sclass="sidebar" pack="start">
+      <button sclass="sidebar-button-dashboard" label="Dashboard" href="/index.zul"/>
+      <button sclass="sidebar-button" label="ERCOT" href="/Portal/ERCOT"/>
+     </vbox>
+    </div>
+    <div sclass="west-south">
+     <vbox sclass="menu" pack="start">
+      <button sclass="menu-button-download" label="Download" forward="onClick=onDownload()"/>
+      <button sclass="menu-button" label="Forecast" forward="onClick=onLMP()"/>
+      <button sclass="menu-button" label="Map" forward="onClick=onMap()"/>
+     </vbox>
+    </div>
+   </div>
+   <div id="east" sclass="east" visible="${gdb:isLoggedIn()}">
+    <include src="/Portal/ERCOT/Download/download-center.zul"/>
+   </div>
+  </div>
+  
+  <div sclass="clear-both"/>
+  
+  <include src="/footer.zul"/>
+ 
+ </div>
+</zk>

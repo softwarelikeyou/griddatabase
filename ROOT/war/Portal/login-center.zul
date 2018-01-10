@@ -1,0 +1,131 @@
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .west {
+   height: 330px;
+   width: 420px;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 10px 0px 0px; 
+   display: inline-block;
+   /*border-width: 1px; */
+   /*border-style: solid; */ 
+   /*border-color: #A9A9A9; */
+  }
+  .east {
+   height: 330px;
+   width: 420px;
+   margin: 0px 0px 0px 0px;
+   padding: 0px 0px 0px 0px; 
+   display: inline-block;
+   /*border-width: 1px; */
+   /*border-style: solid; */
+   /*border-color: #A9A9A9; */
+  }
+  .login-username {
+   margin-left: 30px;
+   padding-top: 100px; 
+  }
+  .login-password {
+   margin-left: 30px; 
+   padding-top: 10px;
+  }
+  .login-label {
+   padding: 0px 10px 0px 0px; 
+   font-weight: normal;
+   font: 11px Tahoma, Helvetica, sans-serif;
+   display: block;
+   float: left; width: 110px;
+   font-size: 14px;
+  }
+  .login-button {
+   margin: 10px 0px 0px 260px;
+   height: 25px;
+   width: 75px;
+  }
+  .login-failure-label {
+   padding-top: 20px;
+   margin-left: 100px;
+   font-weight: bold;
+   font: Tahoma, Helvetica, sans-serif;
+   display: block;
+   font-size: 14px;
+   color: red;
+  }
+  .help-signup {
+   margin-left: 30px;
+   padding-top: 80px; 
+  }
+  .help-label {
+   font: 12px Tahoma, Helvetica, sans-serif;
+   color: #0574b5;
+   text-decoration: none;
+  }
+  .help {
+   margin-left: 30px;
+   margin-top: 5px;
+  }
+ </style>
+ <div sclass="west">
+  <xhtml:form id="f" name="f" action="/j_spring_security_check" method="POST">	
+   
+   <hbox sclass="login-username" align="center">
+    <label sclass="login-label" value="Email Address"/>
+    <textbox id="j_username" name="j_username" cols="30" maxlength="100" onCreate="self.focus()">
+	 <attribute name="onOK">Clients.submitForm("f");</attribute>					
+	</textbox>
+   </hbox>
+   
+   <hbox sclass="login-password" align="center">
+    <label sclass="login-label" value="Password"/>
+	<textbox id="j_password" type="password" name="j_password" cols="30" maxlength="25">
+	 <attribute name="onOK">Clients.submitForm("f");</attribute>
+	</textbox>
+   </hbox>
+   
+   <hbox sclass="login" pack="center">
+    <button sclass="login-button" label="Login">
+     <attribute name="onClick">Clients.submitForm("f");</attribute>
+	</button>
+   </hbox>
+  
+   <hbox>
+   	<label value="Authentication failed"
+		   visible="${param.failed==true}"
+		   sclass="login-failure-label"/>	
+   </hbox>
+  </xhtml:form>
+ </div>
+      
+ <div sclass="east">
+  <hbox sclass="help-signup" align="center" spacing="5">
+   <a sclass="help-label">Signup
+    <attribute name="onClick"> { final Window win = (Window) Executions.createComponents("/Portal/User/signup.zul", null, null); win.doModal(); } </attribute>
+   </a>
+  </hbox>
+  
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Forgot your user name?</a>
+  </hbox>
+  
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Forgot your password?</a>
+  </hbox>
+     
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Feedback or suggestions</a>
+  </hbox>
+        
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Report an issue</a>
+  </hbox>
+          
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Browser Requirements &amp; Other Helpful Tips</a>
+  </hbox>
+    
+  <hbox sclass="help" align="center">
+   <a sclass="help-label" disabled="true">Terms of Service</a>
+  </hbox>
+     
+ </div>
+</zk>

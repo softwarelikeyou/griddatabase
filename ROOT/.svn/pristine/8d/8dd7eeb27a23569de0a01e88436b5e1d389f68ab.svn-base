@@ -1,0 +1,14 @@
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <window id="sppMapWindow"
+         closable="false"
+         border="none" 
+         width="100%" 
+         height="100%"
+         contentStyle="overflow:auto;">
+  <iframe id="iframe" 
+          src="/servlet/sppMap" 
+	      width="100%" 
+	      height="100%" 
+	      style="border: none" />
+ </window>
+</zk>

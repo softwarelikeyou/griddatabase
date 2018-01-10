@@ -1,0 +1,85 @@
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .footer {
+   height: 230px;
+   width: 1024px;
+   margin: auto;
+   padding: auto;
+   text-decoration: none;
+   text-align: left;
+  }
+  .footer-west {
+   height: 210px;
+   width: 656px;
+   margin: 0px 0px 0px 0px;
+   padding: 10px 10px 10px 10px;
+   background-color: #DCDCDC;
+   font-family: Verdana, "Times New Roman", Times, serif;
+   font-size: 14px;
+   color: #696969;
+   word-wrap: break-word;
+   float: left;
+  }
+  .footer-east {
+   height: 210px;
+   width: 298px;
+   margin: 0px 0px 0px 0px;
+   padding: 10px 10px 10px 40px;
+   background-color: #DCDCDC;
+   display: inline-block;
+   font-family: Verdana, "Times New Roman", Times, serif;
+   font-size: 14px;
+   color: #696969;
+   word-wrap: break-word;
+  }  
+  
+  .copyright {
+   font-family: Verdana, "Times New Roman", Times, serif;
+   color: #696969;
+   font-size: 11px;
+  }  
+ .footer-link-index {
+  font: 11px Tahoma, Helvetica, sans-serif;
+  padding: 0px 10px 0px 455px;   
+  text-decoration: none; 
+ }
+ .footer-link {
+  font: 11px Tahoma, Helvetica, sans-serif;
+  padding: 0px 10px 0px 10px;   
+  border-left: 1px solid #0574b5;
+  color: #0574b5;
+  line-height: 20px;
+  text-decoration: none;
+ } 
+ </style>
+  <div sclass="footer">
+   <div sclass="footer-west">
+    <html><![CDATA[
+     <p><b>About Grid Database</b></p>
+     <p></p>
+     <p>Grid Database provides ERCOT wholesale electricity price data files for download, daily reports of Ancillary Services and Settlement Point Prices, real-time forecast charts of Locational Marginal Prices, and custom software development.</p>
+     <p></p>
+     <p>Please report any problems or data issues.</p>
+     <p></p>
+     <p>Thanks, Steve</p>
+     ]]></html>
+   </div>
+   <div sclass="footer-east">
+    <html><![CDATA[
+     <p><b>Contact Us</b></p>
+     <p></p>
+     <p><b>Grid Database, LLC</b>
+     <br> 6340 Crab Orchard Rd.
+     <br> Houston, TX 77057
+     <br> <a href="mailto:Steve.Thomas@griddatabase.com?subject=Information Request" style="text-decoration: none;">Steve.Thomas@griddatabase.com</a>
+     <br> (713) 444-3489
+     <br>
+     <br>     
+     <br>
+     <br>
+    ]]></html> 
+    <html sclass="copyright"><![CDATA[&copy; 2011 Grid Database - All Rights Reserved.]]></html>
+   </div>
+  </div>
+</zk>

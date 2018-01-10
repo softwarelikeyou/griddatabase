@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:html="http://www.w3.org/1999/xhtml">
+ <window id="typeChangeWindow" 
+	     border="normal"
+	     width="40%"
+	     closable="true" 
+	     sizable="false" 
+	     maximizable="false" 
+	     minimizable="false"
+	     style="background-color: #0574b5"
+	     apply="com.griddatabase.viewcontroller.user.Controller"
+	     use="com.griddatabase.viewcontroller.user.TypeChangeWindow">
+  <caption label="Change user type for ${gdb:getCurrentUsername()}"/>
+  <groupbox mold="3d">
+   <grid fixedLayout="true">
+	<columns>
+	 <column width="35%"/>
+	 <column width="65%"/>
+	</columns>	
+    <rows>
+     <row>
+	  <label value="User Type" style="vertical-align: middle"/>
+	  <radiogroup id="userType">
+	   <vbox>
+		<radio id="administrator" label="Administrator" value="ADMINISTRATOR" selected="${gdb:isAdministrator()}"/>
+		<radio id="premium" label="Premium" value="PREMIUM" selected="${gdb:isPremium()}"/>
+		<radio id="freemium" label="Freemium" value="FREEMIUM" selected="${gdb:isFreemium()}"/>
+	   </vbox>
+	  </radiogroup>
+	 </row>				
+	</rows>
+   </grid>	
+  </groupbox>
+  <div width="95%" style="margin: 5px; text-align: right;">		
+   <button label="Update" id="saveButton" forward="onTypeChange"/>
+   <button label="Cancel" id="cancelButton"/>
+  </div>
+ </window>
+</zk>

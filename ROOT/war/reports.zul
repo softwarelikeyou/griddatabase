@@ -1,0 +1,68 @@
+<?page title="Grid Database" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <style>
+  .clear-both {
+   clear: both;
+  }
+  .container {
+   height: 1100px;
+   width: 1024px;
+   margin: auto;
+   padding: 0px 0px 0px 0px; 
+  }
+  .center {
+   height: 750px;
+   width: 1024px;
+   margin: auto;
+   padding: 0px 0px 0px 0px;
+   overflow: scroll;
+  }
+    
+  /* margin/padding: top right bottom left; */
+  
+ </style>
+ <div sclass="container">
+  
+  <include src="/header.zul"/>
+    
+  <div sclass="clear-both"/>
+  
+  <div sclass="center">
+    <tabbox
+         hflex="true" 
+         vflex="true">
+     <tabs>
+      <tab id="LMPSPP" label="LMP Forecast" />
+      <tab id="SPPSpreads" label="LZ/Hub Spreads" />
+      <tab id="DAILY" label="Daily" />
+      <tab id="SPPMap" label="SPP Map" />
+      <tab id="RSS" label="RSS" />
+     </tabs>
+     <tabpanels>
+      <tabpanel id="LMPSPPPanel">
+       <include src="/Portal/ERCOT/RTLMP/lmp-box.zul"/>
+      </tabpanel>
+      <tabpanel id="SPPSpreadPanel">
+       <include src="/Portal/ERCOT/RTSPP/spp-box.zul"/>
+      </tabpanel>
+      <tabpanel id="DailyPanel">
+       <include src="/Freemium/reports-tabbox.zul"/>      
+      </tabpanel>
+      <tabpanel id="SPPMapPanel">
+       <include src="/Freemium/spp-map-window.zul"/>      
+      </tabpanel>
+      <tabpanel id="RSSPanel">
+       <include src="/Freemium/rss-window.zul"/>      
+      </tabpanel>
+     </tabpanels>
+    </tabbox>
+  </div>
+  
+  <div sclass="clear-both"/>
+  
+  <include src="/footer.zul"/>
+ 
+ </div>
+</zk>

@@ -1,0 +1,76 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./reportsWindow"?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <window id="reportsWindow"
+         closable="false"
+         border="none" 
+         width="100%" 
+         height="100%"
+         contentStyle="overflow:auto;"
+         use="com.griddatabase.viewcontroller.freemium.ercot.ReportsWindow">
+  <div align="center">
+   <zscript><![CDATA[  
+    ListModelList lm = new ListModelList(Arrays.asList(new String[] { "Table", "Chart" }));
+   ]]></zscript>
+   <toolbar style="background: none; border: none;" align="center">
+    <combobox id="displayCombobox" 
+              width="70px" 
+              autodrop="true" 
+              readonly="true"
+              model="${lm}"
+              onAfterRender="self.setSelectedIndex(0)"/>							
+    <space spacing="5px"/>
+    <label value="From"/>
+    <datebox id="startDate" format="MM/dd/yyyy" cols="10" mold="rounded"/>
+    <space spacing="5px"/>
+    <label value="To"/>
+    <datebox id="endDate" format="MM/dd/yyyy" cols="10" mold="rounded"/>  
+    <zscript>
+     java.util.Calendar calendar = GregorianCalendar.getInstance();
+     calendar.setTime(new Date());
+     calendar.add(java.util.Calendar.DATE, -7);
+     startDate.setValue(calendar.getTime());
+     calendar.setTime(new Date());
+     calendar.add(java.util.Calendar.DATE, 1);
+     endDate.setValue(calendar.getTime());
+    </zscript> 
+   </toolbar>
+   <listbox id="listBox"
+            height="100%"
+            width="100%"
+		    model="@{reportsWindow.model}"
+		    style="border: none;">
+    <listhead sizable="false">
+     <listheader label="@{reportsWindow.type}" style="text-align: center"/>	
+     <listheader label="Date" width="15%" style="text-align: center"/>	
+	 <listheader label="Low" width="9%" style="text-align: center"/>	
+	 <listheader label="Avg" width="12%" style="text-align: center"/>	
+	 <listheader label="High" width="12%" style="text-align: center"/>	
+     <listheader label="AvgChg" width="12%" style="text-align: center"/>	
+    </listhead>
+    <listitem self="@{each='item'}" value="@{item}">
+     <listcell label="@{item, converter='com.griddatabase.viewcontroller.freemium.ercot.TypeLabelConverter'}"
+		       style="text-align: left"/>
+     <listcell label="@{item.intervalDate, converter='com.griddatabase.viewcontroller.converter.ShortDateConverter'}"
+		       style="text-align: center"/>
+     <listcell label="@{item.low, converter='com.griddatabase.viewcontroller.converter.FloatPrecisionConverter'}"
+		       style="@{item.low, converter='com.griddatabase.viewcontroller.converter.NegativePriceRedLabelConverter'}"/>
+     <listcell label="@{item.average, converter='com.griddatabase.viewcontroller.converter.FloatPrecisionConverter'}"
+		       style="@{item.average, converter='com.griddatabase.viewcontroller.converter.NegativePriceRedLabelConverter'}"/>
+	 <listcell label="@{item.high, converter='com.griddatabase.viewcontroller.converter.FloatPrecisionConverter'}"
+		       style="@{item.high, converter='com.griddatabase.viewcontroller.converter.NegativePriceRedLabelConverter'}"/>
+	 <listcell label="@{item.averageChange, converter='com.griddatabase.viewcontroller.converter.FloatPrecisionConverter'}"
+		       style="@{item.averageChange, converter='com.griddatabase.viewcontroller.converter.NegativePriceRedLabelConverter'}"/>
+    </listitem>
+     <listfoot >
+      <listfooter span="6">
+       <label style="font-size: 9px;"
+              multiline="true" 
+              value="Grid Database distributes this information without responsibility for accuracy. All information is accepted on the condition that errors in transmission or omissions shall not be made the basis for any claim, demand or cause for action. The information was obtained from sources believed to be reliable, but we do not guarantee its accuracy.">
+       </label>        
+      </listfooter>
+     </listfoot>
+   </listbox>  
+   <image id="chart" visible="false"/>
+  </div>
+ </window>
+</zk>

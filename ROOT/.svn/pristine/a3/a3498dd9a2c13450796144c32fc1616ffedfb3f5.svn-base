@@ -1,0 +1,59 @@
+<?taglib uri="/WEB-INF/tld/gdb.tld" prefix="gdb"?>
+<?meta name="Description" content="ERCOT, LMP, SPP, DAM, Wholesale, Prices, Zone, Hub" ?>
+<zk xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38741017-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+ <!--
+ <timer id="timerKeepAliveSession" repeats="true" running="true" delay="${session.maxInactiveInterval * 500}" forward="onTimer=onTimerKeepAliveSession"/>
+ -->
+ <style>
+  .header {
+   height: 180px;
+   width: 1024px;
+   margin: 10px auto auto auto;
+   padding: 0px 0px 0px 0px;
+  }
+  .header-a {
+   background-repeat: no-repeat;
+   background-position: right;
+   padding-right: 32px;
+   padding-left: 32px;
+   display: block;
+   line-height: 136px;
+   text-decoration: none;
+   font-family: Verdana, "Times New Roman", Times, serif;
+   font-size: 21px;
+   color: #371C1C;
+  }
+  .header a:hover {
+   color: #0574b5;
+   cursor: hand;
+   cursor: pointer;
+  }
+  /* margin/padding: top right bottom left; */
+  
+ </style>
+ 
+ <div sclass="header">
+ 
+  <hbox align="center">
+   <html><![CDATA[<a href="/index.zul"><img src="/images/logo.jpg"></img></a>]]></html>
+   <space spacing="100px"/>
+   <a sclass="header-a" label="About" href="/about.zul"></a>
+   <a sclass="header-a" label="Downloads" href="/downloads.zul"></a>
+   <a sclass="header-a" label="Reports" href="/reports.zul"></a>
+   <a sclass="header-a" label="Contact" href="/contact.zul"></a>
+  </hbox> 
+ </div>
+</zk>
